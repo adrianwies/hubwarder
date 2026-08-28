@@ -1,0 +1,6 @@
+.motion-story{height:100vh;height:100svh}
+.motion-sticky{position:relative;height:100%;top:auto}
+.speed,.scroll-hint,.overhead-copy,.journey-index{display:none}
+.globe-status{position:absolute;z-index:7;right:var(--pad);bottom:2.5rem;display:flex;align-items:center;gap:.7rem;color:#b69fa7;font:700 .58rem/1 monospace;text-transform:uppercase;letter-spacing:.1em}
+.globe-status i{width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 14px var(--coral);animation:pulse 2s ease-in-out infinite}
+@media(max-width:767px){.motion-story{height:100vh;height:100svh}.globe-status{right:1.25rem}}

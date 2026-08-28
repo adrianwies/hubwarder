@@ -1,0 +1,1 @@
+.scene-copy{will-change:transform,opacity,filter}.loader{will-change:clip-path,opacity}@keyframes pulse{50%{opacity:.35}}.nav__status i{animation:pulse 2s ease-in-out infinite}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}

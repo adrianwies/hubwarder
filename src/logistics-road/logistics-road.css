@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0');
+.hero--home { position:relative; z-index:6; isolation:isolate; }
+.logistics-road {
+  --road-section-height: 420vh;
+  --road-width: clamp(180px,15vw,280px);
+  position: relative;
+  z-index: 5;
+  display: block;
+  min-height: var(--road-section-height);
+  padding: 0;
+  overflow: visible;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(242,46,120,.055), transparent 22%),
+    radial-gradient(circle at 88% 62%, rgba(255,122,50,.05), transparent 20%),
+    var(--bg-light);
+}
+.logistics-road::before { content:""; position:absolute; z-index:0; top:0; bottom:0; left:50%; width:var(--road-width); background:#000; transform:translateX(-50%); pointer-events:none; }
+.logistics-road::after { content:""; position:absolute; z-index:0; top:0; bottom:0; left:50%; width:var(--road-width); transform:translateX(-50%); pointer-events:none; background:repeating-linear-gradient(to bottom,rgba(86,89,94,.42) 0 24px,transparent 24px 76px) 28% 0/5px 100% no-repeat,repeating-linear-gradient(to bottom,rgba(86,89,94,.42) 0 24px,transparent 24px 76px) 72% 0/5px 100% no-repeat; }
+.logistics-road__sticky { position:absolute; z-index:1; inset:0 0 auto; width:100%; height:100vh; overflow:hidden; pointer-events:none; }
+.logistics-road.is-road-active .logistics-road__sticky { position:fixed; inset:0; }
+.logistics-road__canvas { position: absolute; will-change: transform; inset: 0; width: 100%; height: 100%; max-width: none; }
+.logistics-road__sticky::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,rgba(247,249,252,.82),transparent 22%,transparent 78%,rgba(247,249,252,.82)); }
+.logistics-road__progress { display:none; position:absolute; z-index:3; left:50%; bottom:var(--space-6); width:min(320px,42vw); height:3px; overflow:hidden; border-radius:var(--radius-pill); background:rgba(19,35,59,.12); transform:translateX(-50%); }
+.logistics-road__progress i { display:block; width:100%; height:100%; background:var(--gradient-brand); transform:scaleX(0); transform-origin:left; }
+.logistics-road__status { display:none; position:absolute; z-index:3; right:var(--container-padding); bottom:var(--space-5); margin:0; color:var(--color-text-secondary); font-size:var(--font-size-xs); font-weight:var(--font-weight-bold); letter-spacing:var(--tracking-wide); text-transform:uppercase; }
+.logistics-road__content { position:absolute; z-index:2; inset:0; height:100%; pointer-events:none; }
+.logistics-road__intro,.road-story { position:absolute; width:min(470px,40vw); pointer-events:auto; }
+.logistics-road__intro { top:2.5%; left:0; padding:var(--space-10); border:1px solid var(--border-color-light); border-radius:var(--radius-lg); background:rgba(255,255,255,.92); box-shadow:var(--shadow-md); backdrop-filter:blur(12px); }
+.logistics-road__intro h2 { font-size:clamp(2.3rem,4vw,4.6rem); line-height:var(--line-height-tight); }
+.logistics-road__intro > p:last-child { max-width:42ch; margin:var(--space-6) 0 0; color:var(--color-text-secondary); font-size:var(--font-size-md); }
+.road-story { padding:clamp(24px,3vw,40px); border:1px solid rgba(228,233,240,.9); border-radius:var(--radius-lg); background:rgba(255,255,255,.94); box-shadow:var(--shadow-sm); opacity:.76; transform:translateY(18px); transition:opacity var(--transition-slow),transform var(--transition-slow),border-color var(--transition-base),box-shadow var(--transition-base); backdrop-filter:blur(12px); }
+.road-story.is-active { opacity:1; transform:translateY(0); border-color:var(--border-brand); box-shadow:var(--shadow-md); }
+.road-story--left { left:0; }
+.road-story--right { right:0; }
+.road-story[data-road-segment="01"] { top:15%; }
+.road-story[data-road-segment="02"] { top:32%; }
+.road-story[data-road-segment="03"] { top:49%; }
+.road-story[data-road-segment="04"] { top:66%; }
+.road-story[data-road-segment="05"] { top:83%; }
+.road-story__number { float:right; color:var(--color-primary); font-size:var(--font-size-2xl); font-weight:var(--font-weight-bold); letter-spacing:var(--tracking-tight); }
+.road-story .eyebrow { margin-bottom:var(--space-4); }
+.road-story h3 { max-width:15ch; margin-bottom:var(--space-5); font-size:clamp(1.65rem,2.4vw,2.5rem); }
+.road-story > p:not(.eyebrow) { color:var(--color-text-secondary); line-height:var(--line-height-relaxed); }
+.road-story ul { display:grid; gap:var(--space-2); margin:var(--space-6) 0 0; padding:0; list-style:none; }
+.road-story li { position:relative; padding-left:20px; color:var(--color-text); font-size:var(--font-size-sm); font-weight:var(--font-weight-medium); }
+.road-story li::before { content:""; position:absolute; left:0; top:.55em; width:7px; height:7px; border-radius:50%; background:var(--gradient-brand); }
+.road-story .btn-primary { margin-top:var(--space-6); }
+@media(max-width:992px){
+  .logistics-road { --road-section-height:400vh; }
+  .logistics-road__intro,.road-story { width:min(410px,44vw); }
+}
+@media(max-width:768px){
+  .logistics-road { --road-section-height:390vh; }
+  .logistics-road__sticky::after { background:linear-gradient(180deg,rgba(247,249,252,.1),transparent 55%,rgba(247,249,252,.45)); }
+  .logistics-road__content { width:calc(100% - 40px); }
+  .logistics-road__intro,.road-story { left:0; right:auto; width:min(88vw,410px); padding:var(--space-6); }
+  .logistics-road__intro { top:1.5%; }
+  .road-story[data-road-segment="01"]{top:17%}.road-story[data-road-segment="02"]{top:34%}.road-story[data-road-segment="03"]{top:51%}.road-story[data-road-segment="04"]{top:68%}.road-story[data-road-segment="05"]{top:85%}
+  .road-story h3 { font-size:clamp(1.5rem,7vw,2.1rem); }
+  .logistics-road__status { right:20px; bottom:30px; max-width:42vw; text-align:right; }
+  .logistics-road__progress { left:20px; width:42vw; transform:none; }
+}
+@media(prefers-reduced-motion:reduce){.road-story{transition:none;}}
+
+/* Composición editorial: manifiesto fijo, ruta central y beneficios en scroll */
+.logistics-road__intro {
+  position: sticky;
+  z-index: 4;
+  top: clamp(118px, 16vh, 170px);
+  left: auto;
+  width: min(390px, 31vw);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.logistics-road__intro h2 { font-size: clamp(2.25rem, 3.5vw, 4.4rem); }
+.logistics-road__intro > p:last-of-type { max-width: 34ch; }
+.logistics-road__brand {
+  width: fit-content;
+  margin-top: var(--space-10);
+  padding: 8px 12px;
+  display: block;
+  border-radius: var(--radius-sm);
+  background: var(--bg-dark);
+}
+.logistics-road__brand img { width: clamp(128px, 11vw, 168px); height: 30px; object-fit: contain; }
+.logistics-road .road-story,
+.logistics-road .road-story--left,
+.logistics-road .road-story--right {
+  right: 0;
+  left: auto;
+  width: min(390px, 31vw);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.logistics-road .road-story.is-active { border-color: transparent; box-shadow: none; }
+.logistics-road .road-story h3 { max-width: 14ch; }
+.logistics-road .road-story ul { padding-top: var(--space-5); border-top: 1px solid var(--border-color); }
+@media (max-width: 992px) {
+  .logistics-road__intro,
+  .logistics-road .road-story,
+  .logistics-road .road-story--left,
+  .logistics-road .road-story--right { width: min(330px, 35vw); }
+}
+@media (max-width: 768px) {
+  .logistics-road__intro { position: absolute; top: 1.5%; width: min(82vw, 360px); }
+  .logistics-road .road-story,
+  .logistics-road .road-story--left,
+  .logistics-road .road-story--right { right: 0; left: auto; width: min(76vw, 340px); }
+}
+.material-symbols-rounded { font-family:"Material Symbols Rounded"; font-weight:normal; font-style:normal; line-height:1; letter-spacing:normal; text-transform:none; white-space:nowrap; word-wrap:normal; direction:ltr; -webkit-font-feature-settings:"liga"; -webkit-font-smoothing:antialiased; font-feature-settings:"liga"; }
+.road-story__icon { width:54px; height:54px; margin-bottom:var(--space-6); display:grid; place-items:center; color:var(--color-primary); border:1px solid var(--border-brand); border-radius:16px; background:var(--gradient-brand-soft); font-size:28px; }
+.logistics-road .road-story > p:not(.eyebrow) { max-width:30ch; margin-bottom:0; font-size:var(--font-size-base); line-height:1.55; }
+.logistics-road .road-story h3 { margin-bottom:var(--space-4); }
+/* Ritmo compacto y separación inicial bajo el hero */
+.logistics-road { --road-section-height: 340vh; }
+.logistics-road__intro { margin-top: clamp(72px, 11vh, 124px); }
+.road-story[data-road-segment="01"] { top: 17%; }
+.road-story[data-road-segment="02"] { top: 31%; }
+.road-story[data-road-segment="03"] { top: 45%; }
+.road-story[data-road-segment="04"] { top: 59%; }
+.road-story[data-road-segment="05"] { top: 73%; }
+@media (max-width: 992px) { .logistics-road { --road-section-height: 330vh; } }
+@media (max-width: 768px) { .logistics-road { --road-section-height: 360vh; } .logistics-road__intro { margin-top: 48px; } }
+/* Logo limpio y mayor respiración entre beneficios */
+.logistics-road__brand { padding: 0; border-radius: 0; background: transparent; }
+.logistics-road__brand img { height: auto; }
+.logistics-road { --road-section-height: 360vh; }
+.road-story[data-road-segment="01"] { top: 16%; }
+.road-story[data-road-segment="02"] { top: 32%; }
+.road-story[data-road-segment="03"] { top: 48%; }
+.road-story[data-road-segment="04"] { top: 64%; }
+.road-story[data-road-segment="05"] { top: 80%; }
+@media (max-width: 992px) { .logistics-road { --road-section-height: 350vh; } }
+@media (max-width: 768px) { .logistics-road { --road-section-height: 380vh; } }
+/* Intro centrado verticalmente dentro de la columna izquierda */
+.logistics-road__intro { top: 50vh; margin-top: 0; transform: translateY(-50%); text-align: left; }
+@media (max-width: 768px) { .logistics-road__intro { top: 72px; margin-top: 0; transform: none; } }
+/* Centrado real en el viewport mientras la experiencia está activa */
+.logistics-road.is-road-active .logistics-road__intro {
+  position: fixed;
+  z-index: 8;
+  top: 50%;
+  left: max(var(--container-padding), calc((100vw - var(--container-width)) / 2));
+  margin: 0;
+  transform: translateY(-50%);
+}
+@media (max-width: 768px) {
+  .logistics-road.is-road-active .logistics-road__intro { position: absolute; top: 72px; left: 0; transform: none; }
+}
+/* Centro del área útil: viewport menos el header fijo de 82px */
+.logistics-road.is-road-active .logistics-road__intro { top: calc(50% + 41px); }
+/* Wordmark limpio: el PNG original incorpora un marco */
+.logistics-road__brand span { display:block; color:transparent; background:var(--gradient-brand); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:clamp(1.15rem,1.5vw,1.45rem); font-weight:var(--font-weight-bold); letter-spacing:-.035em; line-height:1; }
+/* Iconos de beneficios sin caja */
+.road-story__icon { width:auto; height:auto; display:inline-block; place-items:unset; padding:0; border:0; border-radius:0; background:none; box-shadow:none; font-size:38px; }

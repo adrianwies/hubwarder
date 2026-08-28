@@ -1,0 +1,1 @@
+{"name":"hub-warder-supply-chain","private":true,"version":"1.0.0","type":"module","scripts":{"dev":"vite","build":"vite build","preview":"vite preview"},"dependencies":{"gsap":"^3.15.0","three":"^0.185.1","three-globe":"^2.45.2"},"devDependencies":{"vite":"^8.2.2"}}

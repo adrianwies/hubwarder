@@ -115,3 +115,301 @@
   height:auto;
   object-fit:contain;
 }
+/* CTA final compacto, tratado como una franja promocional. */
+.about-cta{
+  padding:var(--space-12) 0;
+}
+.about-cta .eyebrow{
+  margin-bottom:var(--space-2);
+}
+.about-cta h2{
+  max-width:760px;
+  margin-top:var(--space-2);
+  font-size:clamp(1.75rem,2.5vw,2.75rem);
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.about-cta .container>div{
+  margin-top:var(--space-5);
+  gap:var(--space-8);
+}
+.about-cta .container>div p{
+  max-width:620px;
+  font-size:var(--font-size-sm);
+  line-height:var(--line-height-relaxed);
+}
+.about-cta a{
+  padding:var(--space-3) var(--space-5);
+  font-size:var(--font-size-sm);
+  white-space:nowrap;
+}
+.about-cta a b{
+  margin-left:var(--space-3);
+}
+@media(max-width:620px){
+  .about-cta{
+    padding:var(--space-10) 0;
+  }
+  .about-cta .container>div{
+    margin-top:var(--space-4);
+    gap:var(--space-5);
+  }
+}
+/* Variante cinta: una sola fila y altura mínima. */
+.about-cta{
+  padding:var(--space-5) 0;
+}
+.about-cta .container{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:var(--space-6);
+}
+.about-cta .eyebrow{
+  margin:0;
+  white-space:nowrap;
+}
+.about-cta h2{
+  max-width:none;
+  margin:0;
+  font-size:clamp(1.25rem,1.7vw,1.75rem);
+  line-height:1.15;
+  letter-spacing:-.025em;
+}
+.about-cta .container>div{
+  display:block;
+  margin:0;
+}
+.about-cta .container>div p{
+  display:none;
+}
+.about-cta a{
+  display:inline-flex;
+  align-items:center;
+  padding:var(--space-3) var(--space-5);
+  font-size:var(--font-size-xs);
+}
+@media(max-width:900px){
+  .about-cta .container{
+    grid-template-columns:1fr auto;
+    gap:var(--space-2) var(--space-5);
+  }
+  .about-cta .eyebrow{
+    grid-column:1 / -1;
+  }
+}
+@media(max-width:620px){
+  .about-cta{
+    padding:var(--space-5) 0;
+  }
+  .about-cta .container{
+    grid-template-columns:1fr;
+    gap:var(--space-3);
+  }
+  .about-cta .eyebrow{
+    display:none;
+  }
+  .about-cta a{
+    width:max-content;
+  }
+}
+/* Cinta final: título y bajada a la izquierda, acción a la derecha. */
+.about-cta{
+  position:relative;
+  overflow:hidden;
+  padding:var(--space-5) 0;
+  background:
+    linear-gradient(90deg,rgba(242,46,120,.16),transparent 42%),
+    linear-gradient(110deg,#080a0e,#151118 62%,#22131d);
+  border-block:1px solid rgba(255,255,255,.08);
+}
+.about-cta .container{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-rows:auto auto;
+  align-items:center;
+  column-gap:var(--space-10);
+  row-gap:var(--space-1);
+}
+.about-cta .eyebrow{
+  display:none;
+}
+.about-cta h2{
+  grid-column:1;
+  grid-row:1;
+  max-width:none;
+  margin:0;
+  font-size:clamp(1.35rem,1.8vw,1.85rem);
+  line-height:1.08;
+  letter-spacing:-.025em;
+}
+.about-cta .container>div{
+  display:contents;
+}
+.about-cta .container>div p{
+  display:block;
+  grid-column:1;
+  grid-row:2;
+  max-width:760px;
+  margin:0;
+  color:rgba(255,255,255,.7);
+  font-size:var(--font-size-sm);
+  line-height:var(--line-height-normal);
+}
+.about-cta a{
+  grid-column:2;
+  grid-row:1 / 3;
+  align-self:center;
+  padding:var(--space-3) var(--space-6);
+  border:1px solid color-mix(in srgb,var(--color-primary-light) 72%,transparent);
+  background:rgba(5,7,12,.64);
+  font-size:var(--font-size-xs);
+  white-space:nowrap;
+}
+@media(max-width:700px){
+  .about-cta{
+    padding:var(--space-5) 0;
+  }
+  .about-cta .container{
+    grid-template-columns:1fr;
+    row-gap:var(--space-2);
+  }
+  .about-cta h2,
+  .about-cta .container>div p,
+  .about-cta a{
+    grid-column:1;
+    grid-row:auto;
+  }
+  .about-cta a{
+    width:max-content;
+    margin-top:var(--space-2);
+  }
+}
+/* Afinado final de la cinta y su botón. */
+.about-cta{
+  padding:var(--space-3) 0;
+}
+.about-cta a{
+  position:relative;
+  overflow:hidden;
+  min-height:42px;
+  padding:var(--space-2) var(--space-6);
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:var(--radius-pill);
+  color:var(--color-white);
+  background:var(--gradient-brand);
+  box-shadow:0 8px 24px rgba(242,46,120,.22);
+  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+}
+.about-cta a:hover{
+  transform:translateY(-2px);
+  filter:saturate(1.12) brightness(1.06);
+  box-shadow:0 12px 30px rgba(242,46,120,.34);
+}
+.about-cta a:active{
+  transform:translateY(0);
+}
+@media(max-width:700px){
+  .about-cta{
+    padding:var(--space-3) 0;
+  }
+}
+/* Franja realmente delgada: excepción controlada a la escala global de h2. */
+.about-page .about-cta{
+  padding:var(--space-2) 0;
+}
+.about-page .about-cta h2{
+  font-size:clamp(1.05rem,1.35vw,1.4rem) !important;
+  line-height:1.1 !important;
+  letter-spacing:-.02em;
+  white-space:nowrap;
+}
+.about-page .about-cta h2 .section-accent,
+.about-page .about-cta h2 span{
+  display:inline;
+  width:auto;
+  padding:0;
+}
+.about-page .about-cta .container>div p{
+  font-size:var(--font-size-xs);
+  line-height:1.25;
+}
+.about-page .about-cta a{
+  min-height:36px;
+  padding:var(--space-2) var(--space-5);
+}
+@media(max-width:1100px){
+  .about-page .about-cta h2{
+    white-space:normal;
+  }
+}
+@media(max-width:700px){
+  .about-page .about-cta{
+    padding:var(--space-2) 0;
+  }
+}
+/* Balance final: franja media y columnas sin superposición. */
+.about-page .about-cta{
+  padding:var(--space-4) 0;
+}
+.about-page .about-cta .container{
+  grid-template-columns:minmax(0,1fr) max-content;
+  column-gap:var(--space-12);
+}
+.about-page .about-cta h2{
+  min-width:0;
+  max-width:100%;
+  padding-right:0;
+  font-size:clamp(1.25rem,1.65vw,1.75rem) !important;
+  line-height:1.12 !important;
+  white-space:normal;
+  overflow-wrap:break-word;
+}
+.about-page .about-cta .container>div p{
+  min-width:0;
+  font-size:var(--font-size-sm);
+  line-height:1.35;
+}
+.about-page .about-cta a{
+  position:relative;
+  z-index:1;
+  min-height:42px;
+  padding:var(--space-2) var(--space-6);
+}
+@media(max-width:700px){
+  .about-page .about-cta{
+    padding:var(--space-4) 0;
+  }
+  .about-page .about-cta .container{
+    column-gap:0;
+  }
+}
+/* El título de la barra comparte la escala de la cita de cultura. */
+.about-page .about-cta h2{
+  font-size:clamp(1.25rem,1.5vw,1.65rem) !important;
+  font-weight:600;
+  line-height:1.25 !important;
+}
+.about-page .about-cta h2 span{
+  color:transparent;
+  background:var(--gradient-brand);
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+/* Escala compartida entre la cita de cultura y el h2 de la barra. */
+.about-page{
+  --culture-quote-size:clamp(1.5rem,2.25vw,2.4rem);
+}
+.about-page .about-culture .culture-quote p{
+  font-size:var(--culture-quote-size);
+}
+.about-page .about-cta h2{
+  font-size:var(--culture-quote-size) !important;
+}
+/* Tamaño definitivo del h2 de la barra: independiente del h2 global. */
+main.about-page > .about-cta > .container > h2{
+  font-size:clamp(2rem,2.4vw,2.75rem) !important;
+  line-height:1.2 !important;
+  letter-spacing:-.015em;
+}

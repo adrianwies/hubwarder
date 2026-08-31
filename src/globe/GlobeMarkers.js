@@ -2,22 +2,31 @@ import { GlobeTheme } from './GlobeTheme.js';
 
 const majorCities = [
   { name:'Nueva York', country:'city-us-ny', lat:40.7128, lng:-74.0060, isCity:true },
-  { name:'Los Ángeles', country:'city-us-la', lat:34.0522, lng:-118.2437, isCity:true },
-  { name:'Ciudad de México', country:'city-mx', lat:19.4326, lng:-99.1332, isCity:true },
-  { name:'Bogotá', country:'city-co', lat:4.7110, lng:-74.0721, isCity:true },
-  { name:'São Paulo', country:'city-br', lat:-23.5505, lng:-46.6333, isCity:true },
+  { name:'Los \u00c1ngeles', country:'city-us-la', lat:34.0522, lng:-118.2437, isCity:true },
+  { name:'Ciudad de M\u00e9xico', country:'city-mx', lat:19.4326, lng:-99.1332, isCity:true },
+  { name:'Bogot\u00e1', country:'city-co', lat:4.7110, lng:-74.0721, isCity:true },
+  { name:'S\u00e3o Paulo', country:'city-br', lat:-23.5505, lng:-46.6333, isCity:true },
   { name:'Buenos Aires', country:'city-ar', lat:-34.6037, lng:-58.3816, isCity:true },
   { name:'Santiago', country:'city-cl', lat:-33.4489, lng:-70.6693, isCity:true },
   { name:'Londres', country:'city-uk', lat:51.5074, lng:-0.1278, isCity:true },
-  { name:'París', country:'city-fr', lat:48.8566, lng:2.3522, isCity:true },
+  { name:'Par\u00eds', country:'city-fr', lat:48.8566, lng:2.3522, isCity:true },
   { name:'Madrid', country:'city-es', lat:40.4168, lng:-3.7038, isCity:true },
-  { name:'Fráncfort', country:'city-de', lat:50.1109, lng:8.6821, isCity:true },
-  { name:'Dubái', country:'city-ae', lat:25.2048, lng:55.2708, isCity:true },
+  { name:'Fr\u00e1ncfort', country:'city-de', lat:50.1109, lng:8.6821, isCity:true },
+  { name:'Dub\u00e1i', country:'city-ae', lat:25.2048, lng:55.2708, isCity:true },
   { name:'Singapur', country:'city-sg', lat:1.3521, lng:103.8198, isCity:true },
-  { name:'Shanghái', country:'city-cn', lat:31.2304, lng:121.4737, isCity:true },
+  { name:'Shangh\u00e1i', country:'city-cn', lat:31.2304, lng:121.4737, isCity:true },
   { name:'Tokio', country:'city-jp', lat:35.6762, lng:139.6503, isCity:true },
-  { name:'Seúl', country:'city-kr', lat:37.5665, lng:126.9780, isCity:true }
+  { name:'Se\u00fal', country:'city-kr', lat:37.5665, lng:126.9780, isCity:true }
 ];
+
+// El typeface geométrico incluido por three-globe no contiene todos los
+// glifos latinos. Conservamos los nombres correctos en los datos y usamos una
+// variante compatible únicamente al construir el texto 3D, evitando "?".
+const toGlobeLabel = value => value
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/ñ/g, 'n')
+  .replace(/Ñ/g, 'N');
 
 export class GlobeMarkers {
   constructor(globe, routes, hub, debug=false) {
@@ -39,7 +48,7 @@ export class GlobeMarkers {
       .pointResolution(14)
       .labelLat(d => d.lat)
       .labelLng(d => d.lng)
-      .labelText(d => d.isCity ? '' : d.name)
+      .labelText(d => d.isCity ? '' : toGlobeLabel(d.name))
       .labelColor(d => d.isHub ? GlobeTheme.coralSoft : '#F7F9FC')
       .labelSize(d => d.isHub ? 1.3 : .82)
       .labelDotRadius(0)

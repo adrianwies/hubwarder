@@ -9,7 +9,7 @@ const simpleMaterial=(color)=>new THREE.MeshBasicMaterial({color});
 export class LogisticsRoadScene {
   constructor(section){
     this.section=section;this.canvas=section?.querySelector('[data-logistics-canvas]');this.status=section?.querySelector('[data-road-status]');
-    this.progressBar=section?.querySelector('[data-road-progress]');this.config={...ROAD_CONFIG,horizontalScale:innerWidth<768?.38:innerWidth<992?.72:1};this.progress=0;this.raf=0;this.visible=true;
+    this.progressBar=section?.querySelector('[data-road-progress]');this.config={...ROAD_CONFIG,horizontalScale:innerWidth<768?.38:innerWidth<992?.72:1};this.progress=0;this.raf=0;this.visible=false;
     this.point=new THREE.Vector3();this.tangent=new THREE.Vector3();this.cameraTarget=new THREE.Vector3();this.cameraPosition=new THREE.Vector3();
   }
   async init(){
@@ -17,7 +17,7 @@ export class LogisticsRoadScene {
     this.scene=new THREE.Scene();this.camera=new THREE.OrthographicCamera(-24,24,74,-74,.1,240);
     this.camera.position.set(0,100,62);this.camera.up.set(0,0,-1);this.camera.lookAt(0,0,62);
     this.renderer=new THREE.WebGLRenderer({canvas:this.canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1;this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<768?1.25:1.5));this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1;this.renderer.shadowMap.enabled=false;
     this.roadRoot=new THREE.Group();this.roadRoot.name='RoadRoot';this.scene.add(this.roadRoot);
     this.path=createRoadPath(this.config);this.buildRoad();
     this.warehouseRoot=null;this.dockLight={emissiveIntensity:0};
@@ -27,8 +27,8 @@ export class LogisticsRoadScene {
     this.truck=new TruckController(this.scene,this.path,this.config);await this.truck.init();
     this.scroll=new ScrollController(this.section,this,this.config).init();
     this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(this.canvas);this.resize();this.scroll.refresh();
-    this.intersectionObserver=new IntersectionObserver(([entry])=>{this.visible=entry.isIntersecting;},{rootMargin:'100% 0px'});this.intersectionObserver.observe(this.section);
-    this.setProgress(0);this.render();
+    this.intersectionObserver=new IntersectionObserver(([entry])=>this.setRenderActive(entry.isIntersecting),{rootMargin:'30% 0px'});this.intersectionObserver.observe(this.section);
+    this.setProgress(0);
     window.hubWarderRoad=this;
     return this;
   }
@@ -58,6 +58,7 @@ export class LogisticsRoadScene {
     if(this.progressBar)this.progressBar.style.transform='scaleX('+this.progress+')';
     this.updateStory();this.dockLight.emissiveIntensity=.35+THREE.MathUtils.smoothstep(this.progress,.91,1)*1.5;
     if(DEBUG_ROAD)this.status.textContent='Progreso '+Math.round(this.progress*100)+'%';
+    this.requestRender();
   }
   updateStory(){
     if(!this.status)return;const labels=['Origen confirmado','Coordinación internacional','Operación visible','Control en tránsito','Llegada al centro logístico'];
@@ -66,9 +67,10 @@ export class LogisticsRoadScene {
   }
   resize(){
     const rect=this.canvas.getBoundingClientRect();if(!rect.width||!rect.height)return;
-    const viewHeight=38,halfWidth=(viewHeight*(rect.width/rect.height))/2;this.camera.left=-halfWidth;this.camera.right=halfWidth;this.camera.top=viewHeight/2;this.camera.bottom=-viewHeight/2;this.camera.updateProjectionMatrix();this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));this.renderer.setSize(rect.width,rect.height,false);
+    const viewHeight=38,halfWidth=(viewHeight*(rect.width/rect.height))/2;this.camera.left=-halfWidth;this.camera.right=halfWidth;this.camera.top=viewHeight/2;this.camera.bottom=-viewHeight/2;this.camera.updateProjectionMatrix();this.renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<768?1.25:1.5));this.renderer.setSize(rect.width,rect.height,false);this.requestRender();
   }
-  render(){if(this.visible)this.renderer.render(this.scene,this.camera);this.raf=requestAnimationFrame(()=>this.render());}
+  setRenderActive(active){if(this.visible===active)return;this.visible=active;if(active)this.requestRender();else{cancelAnimationFrame(this.raf);this.raf=0;this.renderer.clear();}}
+  requestRender(){if(!this.visible||this.raf)return;this.raf=requestAnimationFrame(()=>{this.raf=0;if(this.visible)this.renderer.render(this.scene,this.camera);});}
   setSectionActive(active){this.section.classList.toggle('is-road-active',active);this.truck?.setVisible(active);}
   setTruckVisible(value){this.truck?.setVisible(value);}
   destroy(){

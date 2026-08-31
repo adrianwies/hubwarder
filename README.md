@@ -17,7 +17,6 @@ npm run build
 
 ## Personalización
 
-- Textos del hero: `src/data/heroContent.js`.
 - Países, coordenadas y rutas: `src/data/routes.js`.
 - Paleta del globo: `src/globe/GlobeTheme.js`.
 - Variables CSS y colores de interfaz: `src/styles/global.css`.

@@ -1,0 +1,16 @@
+.ocean-voyage{position:relative;z-index:7;height:240vh;min-height:1500px;color:var(--color-white);background:#0d3b52}
+.ocean-voyage__sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0d3b52}
+.ocean-voyage__sticky::before,.ocean-voyage__sticky::after{content:none}
+.ocean-voyage__canvas{position:absolute;z-index:1;inset:0;width:100%;height:100%;max-width:none;background:transparent}
+.ocean-voyage__shade{display:block;position:absolute;z-index:2;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(2,10,17,.66) 0%,rgba(2,10,17,.36) 28%,rgba(2,10,17,.05) 48%,transparent 66%),linear-gradient(180deg,rgba(1,8,14,.12),transparent 25%,transparent 76%,rgba(1,8,14,.18))}
+.ocean-voyage__copy{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;pointer-events:none}
+.ocean-voyage__copy .eyebrow{margin-bottom:var(--space-5);color:var(--color-primary-light)}
+.ocean-voyage__copy h2{max-width:8.8em;color:var(--color-white);font-size:clamp(3.2rem,5.1vw,6.4rem);line-height:.98;letter-spacing:var(--tracking-tight)}
+.ocean-voyage__copy h2 em{display:inline;color:transparent;background:var(--gradient-brand);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-style:normal}
+.ocean-voyage__copy>p:last-child{max-width:39ch;margin-top:var(--space-6);color:rgba(255,255,255,.7);font-size:var(--font-size-md);line-height:var(--line-height-relaxed)}
+.ocean-voyage__status{position:absolute;z-index:3;right:var(--container-padding);bottom:var(--space-8);display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.62);font-size:var(--font-size-xs);font-weight:var(--font-weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase}
+.ocean-voyage__status span{width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 0 6px rgba(242,46,120,.13);animation:oceanPulse 1.8s ease-in-out infinite}
+@keyframes oceanPulse{50%{box-shadow:0 0 0 11px rgba(242,46,120,0)}}
+@media(min-width:1440px){.ocean-voyage__copy{width:calc(100% - 160px);max-width:none}.ocean-voyage__copy h2{font-size:clamp(5rem,5.4vw,6.7rem)}}
+@media(max-width:900px){.ocean-voyage{height:210vh}.ocean-voyage__copy{justify-content:flex-start;padding-top:120px}.ocean-voyage__copy h2{max-width:10em;font-size:clamp(3rem,9vw,5rem)}.ocean-voyage__copy>p:last-child{max-width:34ch}.ocean-voyage__status{right:22px;bottom:22px}}
+@media(max-width:576px){.ocean-voyage{height:190vh;min-height:1100px}.ocean-voyage__copy{padding-top:104px}.ocean-voyage__copy h2{font-size:clamp(2.65rem,12vw,3.7rem)}.ocean-voyage__copy>p:last-child{font-size:var(--font-size-base)}.ocean-voyage__status{font-size:.62rem}}

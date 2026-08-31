@@ -1,2 +1,3 @@
 import { defineConfig } from 'vite';
-export default defineConfig({ server: { host: true }, build: { target: 'es2022', sourcemap: true } });
+import { resolve } from 'node:path';
+export default defineConfig({ server:{host:true}, build:{target:'es2022',sourcemap:true,rollupOptions:{input:{home:resolve(import.meta.dirname,'index.html'),inicio:resolve(import.meta.dirname,'inicio/index.html'),nosotros:resolve(import.meta.dirname,'nosotros/index.html'),servicios:resolve(import.meta.dirname,'servicios/index.html'),plataforma:resolve(import.meta.dirname,'plataforma/index.html'),contacto:resolve(import.meta.dirname,'contacto/index.html'),login:resolve(import.meta.dirname,'iniciar-sesion/index.html'),registro:resolve(import.meta.dirname,'registrarse/index.html')}}} });

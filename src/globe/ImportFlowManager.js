@@ -3,10 +3,10 @@ import gsap from 'gsap';
 export const DEBUG_IMPORT_FLOW = false;
 
 export const FLOW_CONFIG = Object.freeze({
-  minActiveRoutes: 2,
-  maxActiveRoutes: 4,
-  minSpawnDelay: 1.2,
-  maxSpawnDelay: 3.0,
+  minActiveRoutes: 5,
+  maxActiveRoutes: 5,
+  minSpawnDelay: .8,
+  maxSpawnDelay: 1.8,
   minTravelDuration: 3.5,
   maxTravelDuration: 6.5,
   fadeDuration: .8,
@@ -43,7 +43,7 @@ export class ImportFlowManager {
     this.targetActiveRoutes = this.randomTarget();
     this.bootstrapCalls.forEach(call => call.kill());
     this.bootstrapCalls = Array.from({ length:this.config.minActiveRoutes }, (_item, index) =>
-      gsap.delayedCall(index * .65, () => this.running && !this.paused && this.spawnRandomRoute())
+      gsap.delayedCall(index * .35, () => this.running && !this.paused && this.spawnRandomRoute())
     );
     this.scheduleNextRoute();
   }
@@ -99,7 +99,10 @@ export class ImportFlowManager {
       if (this.activeRoutes.size < this.targetActiveRoutes) this.spawnRandomRoute();
       else this.targetActiveRoutes = this.randomTarget();
       this.debugState(delay);
-      this.scheduleNextRoute();
+      const refillDelay = this.activeRoutes.size < this.config.minActiveRoutes
+        ? randomBetween(.12, .32)
+        : randomBetween(this.config.minSpawnDelay, this.config.maxSpawnDelay);
+      this.scheduleNextRoute(refillDelay);
     });
   }
 
@@ -120,22 +123,31 @@ export class ImportFlowManager {
       onComplete: () => {
         this.activeRoutes.delete(routeId);
         this.targetActiveRoutes = this.randomTarget();
-        if (this.running && !this.paused && this.activeRoutes.size < this.config.minActiveRoutes) {
-          this.scheduleNextRoute(randomBetween(.25, .65));
+        if (this.running && !this.paused && this.activeRoutes.size < this.config.maxActiveRoutes) {
+          // Repone esta ruta de forma individual; no espera a que termine el grupo.
+          this.scheduleNextRoute(randomBetween(.12, .3));
         }
       }
     });
-    if (DEBUG_IMPORT_FLOW) console.info(`[ImportFlow] ${origin.name} → Perú`);
+    if (DEBUG_IMPORT_FLOW) console.info(`[ImportFlow] ${origin.name} → Per\u00fa`);
     return routeId;
   }
 
   getRandomOrigin() {
     const activeOriginIds = new Set(this.activeRoutes.values());
+    const activeRegions = new Set(
+      [...activeOriginIds]
+        .map(id => this.origins.find(origin => origin.id === id)?.region)
+        .filter(Boolean)
+    );
     let candidates = this.origins.filter(origin =>
       !activeOriginIds.has(origin.id) &&
       origin.id !== this.previousOriginId &&
-      !this.recentOrigins.includes(origin.id)
+      !this.recentOrigins.includes(origin.id) &&
+      !activeRegions.has(origin.region)
     );
+    // Si ya hay una ruta por cada región disponible, permite repetir región,
+    // pero nunca el mismo país que continúa activo.
     if (!candidates.length) candidates = this.origins.filter(origin => !activeOriginIds.has(origin.id) && origin.id !== this.previousOriginId);
     if (!candidates.length) candidates = this.origins.filter(origin => !activeOriginIds.has(origin.id));
     return candidates[Math.floor(Math.random() * candidates.length)] ?? null;

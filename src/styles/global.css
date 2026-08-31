@@ -2,6 +2,8 @@
 @import './animations.css';
 
 :root {
+  --section-title-size: clamp(2.25rem, 3.5vw, 4.4rem);
+  --section-title-line-height: 1.02;
   /* Tipografía */
   --font-primary: "Instrument Sans", sans-serif;
   --font-weight-regular: 400;
@@ -34,9 +36,9 @@
   --color-secondary: #FF5263;
   --color-accent: #FF7A32;
   --color-accent-dark: #E96522;
-  --color-heading: #13233B;
-  --color-text: #26364D;
-  --color-text-secondary: #647084;
+  --color-heading: #12233F;
+  --color-text: #34435B;
+  --color-text-secondary: #6F7D94;
   --color-text-muted: #8C97A8;
   --color-white: #FFFFFF;
   --bg-body: #FFFFFF;
@@ -56,6 +58,9 @@
 
   /* Gradientes */
   --gradient-brand: linear-gradient(90deg, #F22E78 0%, #FF5263 52%, #FF7A32 100%);
+  --section-heading-color: var(--color-heading);
+  --section-copy-color: var(--color-text-secondary);
+  --section-accent-gradient: var(--gradient-brand);
   --gradient-brand-soft: linear-gradient(135deg, rgba(242, 46, 120, 0.10) 0%, rgba(255, 82, 99, 0.08) 50%, rgba(255, 122, 50, 0.10) 100%);
   --gradient-hero: linear-gradient(120deg, #FFFFFF 0%, #FFFFFF 42%, #FFF7F9 68%, #FFF5EE 100%);
 
@@ -354,6 +359,8 @@ p { margin-top: 0; }
 }
 
 .header-cta { min-height: 46px; padding-inline: var(--space-6); font-size: var(--font-size-xs); text-transform: uppercase; }
+.header__auth{margin-left:auto;display:flex;align-items:center;gap:10px;white-space:nowrap}.header-login{min-height:44px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;color:var(--color-white);border:1px solid rgba(255,255,255,.28);border-radius:var(--radius-pill);font-size:var(--font-size-xs);font-weight:var(--font-weight-semibold);transition:.2s}.header-login:hover{border-color:rgba(255,255,255,.65);background:rgba(255,255,255,.07)}
+@media(max-width:1100px){.header__inner{gap:14px}.header__nav{gap:14px}.header__brand{width:190px!important}.header__auth{gap:7px}.header-login,.header-cta{padding-inline:13px}}@media(max-width:768px){.header__auth .header-login{display:none}}
 
 /* Hero principal HUB-WARDER */
 .hero {
@@ -1592,3 +1599,106 @@ p { margin-top: 0; }
 /* Corrección óptica vertical del logo del header */
 .header__brand img { transform:translateY(3px) scale(1.22); }
 @media(max-width:768px){.header__brand img{transform:translateY(2px) scale(1.16)}}
+
+/* Composición panorámica: aprovecha monitores grandes como la referencia. */
+@media (min-width: 1440px) {
+  .header__inner,
+  .hero__container {
+    width: calc(100% - 160px);
+    max-width: none;
+  }
+
+  .header__brand {
+    width: 310px;
+    padding: 0;
+  }
+
+  .header__brand img {
+    width: 100%;
+    height: 62px;
+    transform: translateY(2px);
+    object-position: left center;
+  }
+
+  .header__nav {
+    gap: clamp(34px, 3.1vw, 62px);
+  }
+
+  .header__nav a,
+  .header-login,
+  .header-cta {
+    font-size: .82rem;
+  }
+
+  .hero__inner {
+    grid-template-columns: minmax(620px, 43%) minmax(0, 57%);
+  }
+
+  .hero__content {
+    max-width: 760px;
+    padding-left: 0;
+  }
+
+  .hero__title {
+    max-width: 8.8em;
+    font-size: clamp(4.8rem, 4.8vw, 6.25rem);
+    line-height: .96;
+  }
+
+  .hero__description {
+    max-width: 43rem;
+    font-size: 1.22rem;
+    line-height: 1.55;
+  }
+
+  .hero__actions {
+    gap: 18px;
+  }
+
+  .hero__actions a {
+    min-height: 66px;
+    padding-inline: 31px;
+    font-size: 1rem;
+  }
+
+  .hero__benefits {
+    max-width: 780px;
+    gap: clamp(22px, 2vw, 42px);
+  }
+
+  .hero__benefits li {
+    font-size: .92rem;
+  }
+
+  .hero__visual {
+    min-height: 720px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .header__inner,
+  .hero__container {
+    width: calc(100% - 190px);
+  }
+
+  .hero__title { font-size: 6.5rem; }
+  .hero__content { max-width: 800px; }
+  .header__brand { width: 330px; }
+  .header__brand img { height: 66px; }
+}
+
+/* Escala tipográfica compartida por todos los títulos de sección del sitio. */
+main > section:not(.hero):not(.page-hero) h2,
+.home-final-cta h2 {
+  font-size: var(--section-title-size) !important;
+  line-height: var(--section-title-line-height) !important;
+  letter-spacing: -.05em;
+}
+
+@media (max-width: 768px) {
+  :root { --section-title-size: clamp(2.2rem, 8vw, 3.35rem); }
+}
+
+@media (max-width: 576px) {
+  :root { --section-title-size: clamp(2.05rem, 10vw, 3rem); }
+}

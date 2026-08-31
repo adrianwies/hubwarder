@@ -1,212 +1,509 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#FFFFFF">
-  <meta name="description" content="HUB-WARDER ofrece soluciones integrales de importación, logística y asesoría aduanera para empresas en Perú.">
-  <title>HUB-WARDER — Importación inteligente al Perú</title>
-</head>
-<body>
-  <div id="loader" class="loader" role="status" aria-live="polite">
-    <img src="/images/logo-hub-blanco.png" alt="HUB-WARDER">
-    <div class="loader__rail"><i></i></div>
-    <p><span data-loader-value>0</span><small>%</small></p>
-  </div>
-
-  <header class="site-header header">
-    <div class="header__inner container">
-      <a class="site-brand header__brand" href="#top" aria-label="HUB-WARDER, inicio">
-        <img src="/images/logo-hub-blanco.png" alt="HUB-WARDER">
-      </a>
-      <nav class="header__nav" aria-label="Navegación principal">
-        <a class="active" href="/">Inicio</a>
-        <a href="/nosotros/">Nosotros</a>
-        <a href="/servicios/">Servicios</a>
-        <a href="/plataforma/">Plataforma</a>
-        <a href="/contacto/">Contacto</a>
-      </nav>
-      <div class="header__auth"><a class="header-login" href="/iniciar-sesion/">Iniciar sesión</a><a class="header-cta btn-primary" href="/registrarse/">Registrarse</a></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta
+      name="description"
+      content="HUB-WARDER ofrece soluciones integrales de importación, logística y asesoría aduanera para empresas en Perú."
+    />
+    <title>HUB-WARDER — Importación inteligente al Perú</title>
+  </head>
+  <body>
+    <div id="loader" class="loader" role="status" aria-live="polite">
+      <img src="/images/logo-hub-blanco.png" alt="HUB-WARDER" />
+      <div class="loader__rail"><i></i></div>
+      <p><span data-loader-value>0</span><small>%</small></p>
     </div>
-  </header>
 
-  <main id="top">
-    <section id="network" class="hero hero--home" aria-labelledby="hero-title">
-      <div class="hero__veil" aria-hidden="true"></div>
-      <div class="hero__peru-location" aria-label="Perú, nuestro destino, tu crecimiento">
-        <span class="hero__location-pin" aria-hidden="true"><i></i></span>
-        <span class="hero__location-card"><strong>PER&Uacute;</strong><small>Nuestro destino,<br>tu crecimiento.</small></span>
+    <header class="site-header header">
+      <div class="header__inner container">
+        <a
+          class="site-brand header__brand"
+          href="#top"
+          aria-label="HUB-WARDER, inicio"
+        >
+          <img src="/images/logo-hub-blanco.png" alt="HUB-WARDER" />
+        </a>
+        <nav class="header__nav" aria-label="Navegación principal">
+          <a class="active" href="/">Inicio</a>
+          <a href="/nosotros/">Nosotros</a>
+          <a href="/servicios/">Servicios</a>
+          <a href="/plataforma/">Plataforma</a>
+          <a href="/contacto/">Contacto</a>
+        </nav>
+        <div class="header__auth">
+          <a class="header-login" href="/iniciar-sesion/">Iniciar sesión</a
+          ><a class="header-cta btn-primary" href="/registrarse/"
+            >Registrarse</a
+          >
+        </div>
       </div>
-      <div class="hero__container container">
-        <div class="hero__inner">
-          <div class="hero__content">
-            <p class="hero__eyebrow eyebrow">Importación sin fronteras</p>
-            <h1 id="hero-title" class="hero__title">Conectamos tu negocio con el <span class="text-gradient">mundo.</span></h1>
-            <p class="hero__description">Soluciones logísticas y aduaneras B2B para empresas que importan al Perú sin complicaciones.</p>
+    </header>
 
-            <div class="hero__actions">
-              <a class="btn-primary" href="#contact">Cotiza tu importación <span aria-hidden="true">→</span></a>
-              <a class="btn-secondary" href="#services">Conoce nuestras soluciones</a>
+    <main id="top">
+      <section
+        id="network"
+        class="hero hero--home"
+        aria-labelledby="hero-title"
+      >
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div
+          class="hero__peru-location"
+          aria-label="Perú, nuestro destino, tu crecimiento"
+        >
+          <span class="hero__location-pin" aria-hidden="true"><i></i></span>
+          <span class="hero__location-card"
+            ><strong>PER&Uacute;</strong
+            ><small>Nuestro destino,<br />tu crecimiento.</small></span
+          >
+        </div>
+        <div class="hero__container container">
+          <div class="hero__inner">
+            <div class="hero__content">
+              <p class="hero__eyebrow eyebrow">Importación sin fronteras</p>
+              <h1 id="hero-title" class="hero__title">
+                Conectamos tu negocio con el
+                <span class="text-gradient">mundo.</span>
+              </h1>
+              <p class="hero__description">
+                Soluciones logísticas y aduaneras B2B para empresas que importan
+                al Perú sin complicaciones.
+              </p>
+
+              <div class="hero__actions">
+                <a class="btn-primary" href="#contact"
+                  >Cotiza tu importación <span aria-hidden="true">→</span></a
+                >
+                <a class="btn-secondary" href="#services"
+                  >Conoce nuestras soluciones</a
+                >
+              </div>
+
+              <ul
+                id="benefits"
+                class="hero__benefits"
+                aria-label="Beneficios de HUB-WARDER"
+              >
+                <li>
+                  <span class="icon-brand" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9" />
+                      <path
+                        d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"
+                      /></svg
+                  ></span>
+                  <span>Importación<br />internacional</span>
+                </li>
+                <li>
+                  <span class="icon-brand" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="m4 7 8-4 8 4-8 4-8-4Z" />
+                      <path d="m4 7 8 4 8-4v10l-8 4-8-4V7Zm8 4v10" /></svg
+                  ></span>
+                  <span>Gestión logística<br />integral</span>
+                </li>
+                <li>
+                  <span class="icon-brand" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"
+                      />
+                      <path d="m8.5 12 2.2 2.2 4.8-5" /></svg
+                  ></span>
+                  <span>Asesoría<br />aduanera</span>
+                </li>
+                <li>
+                  <span class="icon-brand" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M4 19V9m5 10V5m5 14v-7m5 7V3" />
+                      <path d="m3 7 5-4 5 5 7-6" /></svg
+                  ></span>
+                  <span>Eficiencia y<br />transparencia</span>
+                </li>
+              </ul>
             </div>
 
-            <ul id="benefits" class="hero__benefits" aria-label="Beneficios de HUB-WARDER">
-              <li>
-                <span class="icon-brand" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
-                <span>Importación<br>internacional</span>
-              </li>
-              <li>
-                <span class="icon-brand" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 7 8-4 8 4-8 4-8-4Z"/><path d="m4 7 8 4 8-4v10l-8 4-8-4V7Zm8 4v10"/></svg></span>
-                <span>Gestión logística<br>integral</span>
-              </li>
-              <li>
-                <span class="icon-brand" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span>
-                <span>Asesoría<br>aduanera</span>
-              </li>
-              <li>
-                <span class="icon-brand" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/><path d="m3 7 5-4 5 5 7-6"/></svg></span>
-                <span>Eficiencia y<br>transparencia</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="hero__visual" aria-label="Red logística global de HUB-WARDER">
-            <div class="hero__planet-wrap">
-              <div id="globe" class="hero__planet-canvas" aria-label="Globo 3D interactivo con rutas de importación hacia Perú"></div>
-              <div class="hero__planet-overlay" aria-hidden="true"></div>
+            <div
+              class="hero__visual"
+              aria-label="Red logística global de HUB-WARDER"
+            >
+              <div class="hero__planet-wrap">
+                <div
+                  id="globe"
+                  class="hero__planet-canvas"
+                  aria-label="Globo 3D interactivo con rutas de importación hacia Perú"
+                ></div>
+                <div class="hero__planet-overlay" aria-hidden="true"></div>
+              </div>
+              <div class="hero__vehicles" aria-hidden="true">
+                <img src="./imagenes/imagendeportada.png" alt="" />
+              </div>
+              <p class="hero__globe-help">Perú · Hub de destino</p>
             </div>
-            <div class="hero__vehicles" aria-hidden="true">
-              <img src="./imagenes/imagendeportada.png" alt="">
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="services"
+        class="content-section section section--light logistics-road"
+        aria-labelledby="logistics-title"
+      >
+        <div class="logistics-road__sticky">
+          <canvas
+            class="logistics-road__canvas"
+            data-logistics-canvas
+            aria-label="Recorrido 3D de una importación hasta el centro logístico"
+          ></canvas>
+          <div class="logistics-road__progress" aria-hidden="true">
+            <i data-road-progress></i>
+          </div>
+          <p class="logistics-road__status" data-road-status>
+            Origen confirmado
+          </p>
+        </div>
+        <div class="logistics-road__content container">
+          <header class="logistics-road__intro">
+            <p class="eyebrow">Importación conectada</p>
+            <h2 id="logistics-title">
+              Control claro.<br /><em>Decisiones rápidas.</em>
+            </h2>
+            <p>Tu operación visible desde el origen hasta la llegada.</p>
+            <div class="logistics-road__signal" aria-hidden="true">
+              <i></i><span>Operación sincronizada</span>
             </div>
-            <p class="hero__globe-help">Perú · Hub de destino</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="content-section section section--light logistics-road" aria-labelledby="logistics-title">
-      <div class="logistics-road__sticky">
-        <canvas class="logistics-road__canvas" data-logistics-canvas aria-label="Recorrido 3D de una importación hasta el centro logístico"></canvas>
-        <div class="logistics-road__progress" aria-hidden="true"><i data-road-progress></i></div>
-        <p class="logistics-road__status" data-road-status>Origen confirmado</p>
-      </div>
-      <div class="logistics-road__content container">
-        <header class="logistics-road__intro">
-          <p class="eyebrow">Importación conectada</p>
-          <h2 id="logistics-title">Control claro.<br><em>Decisiones rápidas.</em></h2>
-          <p>Tu operación visible desde el origen hasta la llegada.</p>
-          <div class="logistics-road__signal" aria-hidden="true"><i></i><span>Operación sincronizada</span></div>
-          <a class="logistics-road__brand" href="#top" aria-label="HUB-WARDER, volver al inicio"><img src="/images/logo-hub-blanco.png" alt="HUB-WARDER"></a>
-        </header>
-        <article id="segment-01" class="road-story road-story--right" data-road-segment="01"><span class="material-symbols-rounded road-story__icon" aria-hidden="true">location_on</span><span class="road-story__number">01</span><p class="eyebrow">Tracking en tiempo real</p><h3>Sabe dónde está tu operación.</h3><p>Consulta hitos, fechas y avances sin perseguir actualizaciones.</p></article>
-        <article id="segment-02" class="road-story road-story--right" data-road-segment="02"><span class="material-symbols-rounded road-story__icon" aria-hidden="true">smart_toy</span><span class="road-story__number">02</span><p class="eyebrow">Asistente HUB</p><h3>Respuestas cuando las necesitas.</h3><p>Pregunta por estados, pendientes y próximos pasos desde el chatbot.</p></article>
-        <article id="segment-03" class="road-story road-story--right" data-road-segment="03"><span class="material-symbols-rounded road-story__icon" aria-hidden="true">folder_open</span><span class="road-story__number">03</span><p class="eyebrow">Centro documental</p><h3>Cada documento en su lugar.</h3><p>Facturas, packing list y documentos de transporte siempre disponibles.</p></article>
-        <article id="segment-04" class="road-story road-story--right" data-road-segment="04"><span class="material-symbols-rounded road-story__icon" aria-hidden="true">notifications_active</span><span class="road-story__number">04</span><p class="eyebrow">Alertas operativas</p><h3>Actúa antes del retraso.</h3><p>Recibe avisos sobre cambios, vencimientos y tareas críticas.</p></article>
-        <article id="segment-05" class="road-story road-story--right road-story--final" data-road-segment="05"><span class="material-symbols-rounded road-story__icon" aria-hidden="true">support_agent</span><span class="road-story__number">05</span><p class="eyebrow">Gestión acompañada</p><h3>Tecnología con respaldo experto.</h3><p>Nuestro equipo coordina la operación mientras tú mantienes el control.</p><a class="btn-primary" href="#contact">Conecta tu operación <span aria-hidden="true">→</span></a></article>
-      </div>
-    </section>
-
-    <section id="ocean-voyage" class="ocean-voyage" aria-labelledby="ocean-voyage-title">
-      <div class="ocean-voyage__sticky">
-        <canvas class="ocean-voyage__canvas" data-ocean-voyage aria-label="Barco de carga en recorrido marítimo"></canvas>
-        <div class="ocean-voyage__shade" aria-hidden="true"></div>
-        <div class="ocean-voyage__copy container">
-          <div class="ocean-voyage__lead" data-ocean-lead>
-            <p class="eyebrow">Transporte marítimo</p>
-            <h2 id="ocean-voyage-title">Rutas globales.<br><em>Control de principio a fin.</em></h2>
-            <p>Una travesía coordinada desde la reserva hasta la descarga, con cada decisión conectada.</p>
-          </div>
-          <div class="ocean-voyage__chapters" aria-label="Etapas de la operación marítima">
-            <article data-ocean-chapter="01"><span>01 / ORIGEN</span><h3>La ruta correcta comienza antes de zarpar.</h3><p>Validamos itinerario, naviera, documentación y ventanas operativas antes de mover tu carga.</p></article>
-            <article data-ocean-chapter="02"><span>02 / TRÁNSITO</span><h3>Visibilidad mientras el mundo se mueve.</h3><p>Monitoreamos hitos y cambios para que conozcas qué ocurre y qué decisión viene después.</p></article>
-            <article data-ocean-chapter="03"><span>03 / DESTINO</span><h3>Llegar es parte del plan, no el final.</h3><p>Coordinamos arribo, aduanas y entrega para convertir una ruta compleja en una llegada controlada.</p></article>
-          </div>
-          <div class="ocean-voyage__rail" aria-hidden="true"><i></i><span>01</span><span>02</span><span>03</span></div>
-        </div>
-        <p class="ocean-voyage__status"><span></span> Navegación en curso</p>
-      </div>
-    </section>
-
-    <section class="home-command" aria-labelledby="command-title">
-      <div class="home-command__head container home-reveal">
-        <p class="eyebrow">Control sin puntos ciegos</p>
-        <h2 id="command-title">Una operación basada en<br><em>visibilidad, criterio y acción.</em></h2>
-      </div>
-      <div class="home-command__stream home-reveal" data-command-stream>
-        <div class="home-command__principles">
-          <article>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 16s4.5-7 12-7 12 7 12 7-4.5 7-12 7S4 16 4 16Z"/><path d="M16 12a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/></svg>
-            <h3>Visibilidad</h3>
-            <p>Cada hito, documento y alerta disponible en una lectura clara y compartida.</p>
+            <a
+              class="logistics-road__brand"
+              href="#top"
+              aria-label="HUB-WARDER, volver al inicio"
+              ><span>HUB-WARDER</span></a
+            >
+          </header>
+          <article
+            id="segment-01"
+            class="road-story road-story--right"
+            data-road-segment="01"
+          >
+            <span
+              class="material-symbols-rounded road-story__icon"
+              aria-hidden="true"
+              >location_on</span
+            ><span class="road-story__number">01</span>
+            <p class="eyebrow">Tracking en tiempo real</p>
+            <h3>Sabe dónde está tu operación.</h3>
+            <p>
+              Consulta hitos, fechas y avances sin perseguir actualizaciones.
+            </p>
           </article>
-          <article>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 27 10v12l-11 6L5 22V10l11-6Z"/><path d="m10 16 4 4 8-9"/></svg>
-            <h3>Criterio</h3>
-            <p>Especialistas que convierten información operativa en contexto y prioridad.</p>
+          <article
+            id="segment-02"
+            class="road-story road-story--right"
+            data-road-segment="02"
+          >
+            <span
+              class="material-symbols-rounded road-story__icon"
+              aria-hidden="true"
+              >smart_toy</span
+            ><span class="road-story__number">02</span>
+            <p class="eyebrow">Asistente HUB</p>
+            <h3>Respuestas cuando las necesitas.</h3>
+            <p>
+              Pregunta por estados, pendientes y próximos pasos desde el
+              chatbot.
+            </p>
           </article>
-          <article>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 24 17 5l1 10 9 1L5 24Z"/><path d="m13 19 5-4"/></svg>
-            <h3>Acción</h3>
-            <p>Responsables y próximos pasos alineados para mantener la operación avanzando.</p>
+          <article
+            id="segment-03"
+            class="road-story road-story--right"
+            data-road-segment="03"
+          >
+            <span
+              class="material-symbols-rounded road-story__icon"
+              aria-hidden="true"
+              >folder_open</span
+            ><span class="road-story__number">03</span>
+            <p class="eyebrow">Centro documental</p>
+            <h3>Cada documento en su lugar.</h3>
+            <p>
+              Facturas, packing list y documentos de transporte siempre
+              disponibles.
+            </p>
+          </article>
+          <article
+            id="segment-04"
+            class="road-story road-story--right"
+            data-road-segment="04"
+          >
+            <span
+              class="material-symbols-rounded road-story__icon"
+              aria-hidden="true"
+              >notifications_active</span
+            ><span class="road-story__number">04</span>
+            <p class="eyebrow">Alertas operativas</p>
+            <h3>Actúa antes del retraso.</h3>
+            <p>Recibe avisos sobre cambios, vencimientos y tareas críticas.</p>
+          </article>
+          <article
+            id="segment-05"
+            class="road-story road-story--right road-story--final"
+            data-road-segment="05"
+          >
+            <span
+              class="material-symbols-rounded road-story__icon"
+              aria-hidden="true"
+              >support_agent</span
+            ><span class="road-story__number">05</span>
+            <p class="eyebrow">Gestión acompañada</p>
+            <h3>Tecnología con respaldo experto.</h3>
+            <p>
+              Nuestro equipo coordina la operación mientras tú mantienes el
+              control.
+            </p>
+            <a class="btn-primary" href="#contact"
+              >Conecta tu operación <span aria-hidden="true">→</span></a
+            >
           </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="home-route" aria-labelledby="route-title">
-      <div class="home-route__sticky container">
-        <div class="home-route__copy home-reveal">
-          <p class="eyebrow">Así se siente trabajar con HUB</p>
-          <h2 id="route-title">De la incertidumbre<br><em>a una ruta clara.</em></h2>
-          <p>Un método diseñado para reducir fricción, anticipar riesgos y mantener a tu equipo siempre informado.</p>
-          <a href="/servicios/">Explorar nuestras soluciones <span>→</span></a>
-        </div>
-        <div class="home-route__map" aria-label="Proceso de una operación HUB-WARDER">
-          <svg viewBox="0 0 640 440" role="img" aria-label="Ruta desde diagnóstico hasta entrega">
-            <path class="home-route__path" d="M65 355 C145 355 145 92 250 92 S365 345 455 345 S515 116 590 116"/>
-            <path class="home-route__progress" data-route-progress d="M65 355 C145 355 145 92 250 92 S365 345 455 345 S515 116 590 116"/>
-          </svg>
-          <ol>
-            <li style="--x:8%;--y:78%"><b>01</b><span>Diagnóstico</span></li>
-            <li style="--x:36%;--y:14%"><b>02</b><span>Plan operativo</span></li>
-            <li style="--x:69%;--y:76%"><b>03</b><span>Coordinación</span></li>
-            <li style="--x:90%;--y:20%"><b>04</b><span>Entrega visible</span></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="partners-section" aria-labelledby="partners-title">
-      <div class="partners-section__sticky">
-        <div class="partners-section__layout container">
-          <div class="partners-section__copy">
-            <p class="eyebrow">Alianzas que nos impulsan</p>
-            <h2 id="partners-title">Empresas que<br><em>avanzan con nosotros.</em></h2>
-            <a class="partners-section__cta" href="/contacto/">Construyamos la próxima ruta <span aria-hidden="true">↗</span></a>
+      <section
+        id="ocean-voyage"
+        class="ocean-voyage"
+        aria-labelledby="ocean-voyage-title"
+      >
+        <div class="ocean-voyage__sticky">
+          <canvas
+            class="ocean-voyage__canvas"
+            data-ocean-voyage
+            aria-label="Barco de carga en recorrido marítimo"
+          ></canvas>
+          <div class="ocean-voyage__shade" aria-hidden="true"></div>
+          <div class="ocean-voyage__copy container">
+            <div class="ocean-voyage__lead" data-ocean-lead>
+              <p class="eyebrow">Transporte marítimo</p>
+              <h2 id="ocean-voyage-title">
+                Rutas globales.<br /><em>Control de principio a fin.</em>
+              </h2>
+              <p>
+                Una travesía coordinada desde la reserva hasta la descarga, con
+                cada decisión conectada.
+              </p>
+            </div>
+            <div
+              class="ocean-voyage__chapters"
+              aria-label="Etapas de la operación marítima"
+            >
+              <article data-ocean-chapter="01">
+                <span>01 / ORIGEN</span>
+                <h3>La ruta correcta comienza antes de zarpar.</h3>
+                <p>
+                  Validamos itinerario, naviera, documentación y ventanas
+                  operativas antes de mover tu carga.
+                </p>
+              </article>
+              <article data-ocean-chapter="02">
+                <span>02 / TRÁNSITO</span>
+                <h3>Visibilidad mientras el mundo se mueve.</h3>
+                <p>
+                  Monitoreamos hitos y cambios para que conozcas qué ocurre y
+                  qué decisión viene después.
+                </p>
+              </article>
+              <article data-ocean-chapter="03">
+                <span>03 / DESTINO</span>
+                <h3>Llegar es parte del plan, no el final.</h3>
+                <p>
+                  Coordinamos arribo, aduanas y entrega para convertir una ruta
+                  compleja en una llegada controlada.
+                </p>
+              </article>
+            </div>
+            <div class="ocean-voyage__rail" aria-hidden="true">
+              <i></i><span>01</span><span>02</span><span>03</span>
+            </div>
           </div>
-          <p class="partners-section__description">Construimos relaciones duraderas con empresas que necesitan coordinación, visibilidad y confianza en cada operación.</p>
+          <p class="ocean-voyage__status"><span></span> Navegación en curso</p>
         </div>
-        <div class="partners-road" aria-hidden="true">
-          <div class="partners-track"><i data-partners-progress></i></div>
-          <div class="partners-stops">
-            <div class="partner-stop" style="--stop-x:15%" data-partner-stop><img src="./imagenes/logo-gabs.png" alt=""><i></i><b></b></div>
-            <div class="partner-stop" style="--stop-x:29%" data-partner-stop><img src="./imagenes/logo-lc.png" alt=""><i></i><b></b></div>
-            <div class="partner-stop" style="--stop-x:43%" data-partner-stop><img src="./imagenes/logo-probas.png" alt=""><i></i><b></b></div>
-            <div class="partner-stop" style="--stop-x:57%" data-partner-stop><img src="./imagenes/logo-canasteria.png" alt=""><i></i><b></b></div>
-            <div class="partner-stop" style="--stop-x:71%" data-partner-stop><img src="./imagenes/logo-cm.png" alt=""><i></i><b></b></div>
-            <div class="partner-stop" style="--stop-x:85%" data-partner-stop><img src="./imagenes/logo-gtg.png" alt=""><i></i><b></b></div>
+      </section>
+
+      <section
+        class="home-command home-route home-command-route"
+        aria-labelledby="command-title route-title"
+      >
+        <div class="home-route__sticky home-command-route__sticky container">
+          <div
+            class="home-command-route__half home-command-route__half--command"
+          >
+            <div class="home-command__head home-reveal">
+              <p class="eyebrow">Control sin puntos ciegos</p>
+              <h2 id="command-title">
+                Una operación basada en<br /><em
+                  >visibilidad, criterio y acción.</em
+                >
+              </h2>
+            </div>
+            <div class="home-command__stream home-reveal" data-command-stream>
+              <div class="home-command__principles">
+                <article>
+                  <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path
+                      d="M4 16s4.5-7 12-7 12 7 12 7-4.5 7-12 7S4 16 4 16Z"
+                    />
+                    <path d="M16 12a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z" />
+                  </svg>
+                  <h3>Visibilidad</h3>
+                  <p>
+                    Cada hito, documento y alerta disponible en una lectura
+                    clara y compartida.
+                  </p>
+                </article>
+                <article>
+                  <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path d="M16 4 27 10v12l-11 6L5 22V10l11-6Z" />
+                    <path d="m10 16 4 4 8-9" />
+                  </svg>
+                  <h3>Criterio</h3>
+                  <p>
+                    Especialistas que convierten información operativa en
+                    contexto y prioridad.
+                  </p>
+                </article>
+                <article>
+                  <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path d="M5 24 17 5l1 10 9 1L5 24Z" />
+                    <path d="m13 19 5-4" />
+                  </svg>
+                  <h3>Acción</h3>
+                  <p>
+                    Responsables y próximos pasos alineados para mantener la
+                    operación avanzando.
+                  </p>
+                </article>
+              </div>
+            </div>
           </div>
-          <canvas data-partners-truck></canvas>
+          <div class="home-command-route__half home-command-route__half--route">
+            <div class="home-route__copy home-reveal">
+              <p class="eyebrow">Así se siente trabajar con HUB</p>
+              <h2 id="route-title">
+                De la incertidumbre<br /><em>a una ruta clara.</em>
+              </h2>
+              <p>
+                Un método diseñado para reducir fricción, anticipar riesgos y
+                mantener a tu equipo siempre informado.
+              </p>
+              <a href="/servicios/"
+                >Explorar nuestras soluciones <span>→</span></a
+              >
+            </div>
+            <div
+              class="home-route__map"
+              aria-label="Proceso de una operación HUB-WARDER"
+            >
+              <svg
+                viewBox="0 0 640 440"
+                preserveAspectRatio="none"
+                role="img"
+                aria-label="Ruta desde diagnóstico hasta entrega"
+              >
+                <path
+                  class="home-route__path"
+                  d="M65 355 C145 355 145 92 250 92 S365 345 455 345 S515 116 590 116"
+                />
+                <path
+                  class="home-route__progress"
+                  data-route-progress
+                  d="M65 355 C145 355 145 92 250 92 S365 345 455 345 S515 116 590 116"
+                />
+              </svg>
+              <ol>
+                <li style="--x: 10.16%; --y: 80.68%">
+                  <b>01</b><span>Diagnóstico</span>
+                </li>
+                <li style="--x: 39.06%; --y: 20.91%">
+                  <b>02</b><span>Plan operativo</span>
+                </li>
+                <li style="--x: 71.09%; --y: 78.41%">
+                  <b>03</b><span>Coordinación</span>
+                </li>
+                <li style="--x: 92.19%; --y: 26.36%">
+                  <b>04</b><span>Entrega visible</span>
+                </li>
+              </ol>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-    <div data-final-cta></div>
-  </main>
+      </section>
 
-  <div data-footer></div>
+      <section
+        id="contact"
+        class="partners-section"
+        aria-labelledby="partners-title"
+      >
+        <div class="partners-section__sticky">
+          <div class="partners-section__layout container">
+            <div class="partners-section__copy">
+              <p class="eyebrow">Alianzas que nos impulsan</p>
+              <h2 id="partners-title">
+                Empresas que<br /><em>avanzan con nosotros.</em>
+              </h2>
+              <a class="partners-section__cta" href="/contacto/"
+                >Construyamos la próxima ruta
+                <span aria-hidden="true">↗</span></a
+              >
+            </div>
+            <p class="partners-section__description">
+              Construimos relaciones duraderas con empresas que necesitan
+              coordinación, visibilidad y confianza en cada operación.
+            </p>
+          </div>
+          <div class="partners-road" aria-hidden="true">
+            <div class="partners-track"><i data-partners-progress></i></div>
+            <div class="partners-stops">
+              <div class="partner-stop" style="--stop-x: 15%" data-partner-stop>
+                <img src="./imagenes/logo-gabs.png" alt="" /><i></i><b></b>
+              </div>
+              <div class="partner-stop" style="--stop-x: 29%" data-partner-stop>
+                <img src="./imagenes/logo-lc.png" alt="" /><i></i><b></b>
+              </div>
+              <div class="partner-stop" style="--stop-x: 43%" data-partner-stop>
+                <img src="./imagenes/logo-probas.png" alt="" /><i></i><b></b>
+              </div>
+              <div class="partner-stop" style="--stop-x: 57%" data-partner-stop>
+                <img src="./imagenes/logo-canasteria.png" alt="" /><i></i
+                ><b></b>
+              </div>
+              <div class="partner-stop" style="--stop-x: 71%" data-partner-stop>
+                <img src="./imagenes/logo-cm.png" alt="" /><i></i><b></b>
+              </div>
+              <div class="partner-stop" style="--stop-x: 85%" data-partner-stop>
+                <img src="./imagenes/logo-gtg.png" alt="" /><i></i><b></b>
+              </div>
+            </div>
+            <canvas data-partners-truck></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
 
+    <div data-footer></div>
 
-  <a class="whatsapp-float" data-label="Contacta con un asesor" href="https://wa.me/?text=Hola%2C%20quisiera%20hablar%20con%20un%20asesor%20de%20HUB-WARDER%20sobre%20mi%20pr%C3%B3xima%20importaci%C3%B3n." target="_blank" rel="noopener noreferrer" aria-label="Contactar a HUB-WARDER por WhatsApp">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3A12.83 12.83 0 0 0 5.02 22.4L3.3 28.7l6.45-1.69A12.84 12.84 0 1 0 16.04 3Zm0 23.5c-1.96 0-3.88-.54-5.54-1.55l-.4-.24-3.82 1 1.02-3.72-.26-.42A10.65 10.65 0 1 1 16.04 26.5Zm5.84-7.97c-.32-.16-1.9-.94-2.2-1.05-.3-.1-.5-.16-.72.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.59a9.63 9.63 0 0 1-1.78-2.21c-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.56.16-.19.21-.32.32-.54.1-.21.05-.4-.03-.56-.08-.16-.72-1.73-.99-2.37-.26-.63-.52-.54-.72-.55h-.61c-.21 0-.56.08-.86.4-.3.32-1.13 1.1-1.13 2.69 0 1.58 1.16 3.11 1.32 3.33.16.21 2.28 3.48 5.52 4.88.77.33 1.37.53 1.84.68.77.25 1.48.21 2.03.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.14-.3-.22-.62-.38Z"/></svg>
-  </a>  <script type="module" src="/src/main.js"></script>
-</body>
+    <a
+      class="whatsapp-float"
+      data-label="Contacta con un asesor"
+      href="https://wa.me/?text=Hola%2C%20quisiera%20hablar%20con%20un%20asesor%20de%20HUB-WARDER%20sobre%20mi%20pr%C3%B3xima%20importaci%C3%B3n."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar a HUB-WARDER por WhatsApp"
+    >
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path
+          d="M16.04 3A12.83 12.83 0 0 0 5.02 22.4L3.3 28.7l6.45-1.69A12.84 12.84 0 1 0 16.04 3Zm0 23.5c-1.96 0-3.88-.54-5.54-1.55l-.4-.24-3.82 1 1.02-3.72-.26-.42A10.65 10.65 0 1 1 16.04 26.5Zm5.84-7.97c-.32-.16-1.9-.94-2.2-1.05-.3-.1-.5-.16-.72.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.59a9.63 9.63 0 0 1-1.78-2.21c-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.56.16-.19.21-.32.32-.54.1-.21.05-.4-.03-.56-.08-.16-.72-1.73-.99-2.37-.26-.63-.52-.54-.72-.55h-.61c-.21 0-.56.08-.86.4-.3.32-1.13 1.1-1.13 2.69 0 1.58 1.16 3.11 1.32 3.33.16.21 2.28 3.48 5.52 4.88.77.33 1.37.53 1.84.68.77.25 1.48.21 2.03.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.14-.3-.22-.62-.38Z"
+        />
+      </svg>
+    </a>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>

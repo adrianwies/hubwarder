@@ -10,14 +10,12 @@ import { LogisticsRoadScene } from './logistics-road/LogisticsRoadScene.js';
 import { HorizontalTruckScene } from './partners-road/HorizontalTruckScene.js';
 import { OceanVoyageScene } from './ocean-voyage/OceanVoyageScene.js';
 import { HomeExperience } from './home/HomeExperience.js';
-import { mountFinalCta } from './components/final-cta.js';
 import { mountFooter } from './components/footer.js';
 
 const globe = new GlobeScene({ container: document.querySelector('#globe') });
 const logisticsRoad = new LogisticsRoadScene(document.querySelector('.logistics-road'));
 const partnersRoad = new HorizontalTruckScene(document.querySelector('.partners-section'));
 const oceanVoyage = new OceanVoyageScene(document.querySelector('.ocean-voyage'));
-mountFinalCta();
 mountFooter();
 
 // Las escenas pesadas se preparan poco antes de entrar al viewport. Así el

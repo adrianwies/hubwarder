@@ -161,3 +161,31 @@
 .logistics-road__brand span { display:block; color:transparent; background:var(--gradient-brand); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:clamp(1.15rem,1.5vw,1.45rem); font-weight:var(--font-weight-bold); letter-spacing:-.035em; line-height:1; }
 /* Iconos de beneficios sin caja */
 .road-story__icon { width:auto; height:auto; display:inline-block; place-items:unset; padding:0; border:0; border-radius:0; background:none; box-shadow:none; font-size:38px; }
+
+/* Activación y columna editorial alineadas al ritmo global del index. */
+@media (min-width: 993px) {
+  .logistics-road__intro {
+    width:min(470px,36vw);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .logistics-road__intro {
+    width:min(390px,40vw);
+  }
+}
+
+.logistics-road .logistics-road__intro h2 em{
+  display:inline-block;
+  max-width:100%;
+  padding-right:.12em;
+  padding-bottom:.08em;
+  margin-right:-.12em;
+  margin-bottom:-.08em;
+  line-height:1.08;
+}
+
+.logistics-road .logistics-road__intro>p:last-of-type{
+  margin-top:var(--space-8);
+  line-height:var(--line-height-relaxed);
+}

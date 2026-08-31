@@ -13,9 +13,28 @@ export class HomeExperience {
     const route=document.querySelector('[data-route-progress]');
     if(route){
       const length=route.getTotalLength();
+      const points=[...document.querySelectorAll('.home-route__map li')];
+      const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const routeDuration=reducedMotion ? .01 : 3.2;
       gsap.set(route,{strokeDasharray:length,strokeDashoffset:length});
-      const tween=gsap.to(route,{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:'.home-route',start:'top 70%',end:'bottom 65%',scrub:1}});
-      this.animations.push(tween);
+      gsap.set(points,{autoAlpha:.28});
+      const timeline=gsap.timeline({
+        repeat:-1,
+        repeatDelay:.65,
+        scrollTrigger:{
+          trigger:'.home-route',
+          start:'top 72%',
+          toggleActions:'play pause resume pause',
+        },
+      });
+      timeline
+        .set(points,{autoAlpha:.28},0)
+        .to(points[0],{autoAlpha:1,duration:.18},0)
+        .to(route,{strokeDashoffset:0,duration:routeDuration,ease:'power1.inOut'},0);
+      points.slice(1).forEach((point,index)=>{
+        timeline.to(point,{autoAlpha:1,duration:.22},routeDuration*((index+1)/3));
+      });
+      this.animations.push(timeline);
     }
     return this;
   }

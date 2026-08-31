@@ -7,8 +7,9 @@ const WAKE_OVERLAY_VIDEO_URL = '/video/ship-wake.mp4';
 // Controles exclusivos de la capa de video. No afectan al shader del océano.
 export const SHIP_WAKE_CONFIG = {
   width: 8.5,
-  length: 16,
-  offsetForward: -3.55,
+  length: 18.5,
+  // Compensa la longitud extra para mantener la estela anclada a la popa.
+  offsetForward: -4.8,
   offsetSide: 0,
   baseOpacity: 0,
   intensity: 1.12,

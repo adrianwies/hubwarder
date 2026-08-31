@@ -5,16 +5,41 @@ export const footerMarkup = () => `
     <div class="hub-footer__main container">
       <a class="hub-footer__brand" href="/" aria-label="HUB-WARDER, inicio">
         <img src="/images/logo-hub-blanco.png" alt="HUB-WARDER">
-        <span>Logística internacional<br>clara, visible y conectada.</span>
       </a>
-      <div class="hub-footer__nav">
-        <nav aria-label="Empresa"><small>Empresa</small><a href="/nosotros/">Nosotros</a><a href="/contacto/">Contacto</a></nav>
-        <nav aria-label="Soluciones"><small>Soluciones</small><a href="/servicios/">Servicios</a><a href="/plataforma/">Plataforma</a></nav>
-        <nav aria-label="Acceso"><small>Acceso</small><a href="/iniciar-sesion/">Iniciar sesión</a><a href="/registrarse/">Registrarse</a></nav>
+
+      <nav class="hub-footer__column" aria-label="Enlaces">
+        <small>Enlaces</small>
+        <a href="/">Inicio</a>
+        <a href="/nosotros/">Nosotros</a>
+        <a href="/servicios/">Servicios</a>
+        <a href="/contacto/">Contacto</a>
+      </nav>
+
+      <nav class="hub-footer__column" aria-label="Servicios">
+        <small>Servicios</small>
+        <a href="/servicios/">Soluciones</a>
+        <a href="/plataforma/">Plataforma</a>
+      </nav>
+
+      <div class="hub-footer__column hub-footer__contact">
+        <small>Contacto</small>
+        <a href="mailto:operaciones@hubwarder.com">operaciones@hubwarder.com</a>
+        <a href="/contacto/">Iniciar una conversación <b>↗</b></a>
       </div>
-      <div class="hub-footer__contact"><small>Hablemos</small><a href="mailto:operaciones@hubwarder.com">operaciones@hubwarder.com</a><a href="/contacto/">Iniciar una conversación <b>↗</b></a></div>
+
+      <div class="hub-footer__column hub-footer__social">
+        <small>Síguenos</small>
+        <div class="hub-footer__social-icons" aria-label="Redes sociales">
+          <span aria-label="Facebook" role="img">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v2H6v4h3v7h4v-7h3.3l.7-4h-4V9c0-.7.3-1 1-1Z"/></svg>
+          </span>
+          <span aria-label="Instagram" role="img">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </span>
+        </div>
+        <p>© <b data-year></b> HUB-WARDER.<br>Todos los derechos reservados.</p>
+      </div>
     </div>
-    <div class="hub-footer__bottom container"><span>© <b data-year></b> HUB-WARDER</span><span>Importación · Logística · Aduanas</span><a href="#top">Volver arriba ↑</a></div>
   </footer>`;
 
 export function mountFooter(target=document.querySelector('[data-footer]')){

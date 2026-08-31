@@ -59,6 +59,10 @@ const fragmentShader = /* glsl */ `
       * smoothstep(0.0, .012, overlayUv.y)
       * (1.0 - smoothstep(.988, 1.0, overlayUv.x))
       * (1.0 - smoothstep(.988, 1.0, overlayUv.y));
+    // La cola de la estela pierde fuerza gradualmente antes de alcanzar el
+    // borde del video, evitando que su terminacion se perciba recortada.
+    float tailFade = 1.0 - smoothstep(.70, .98, overlayUv.y);
+    overlayBounds *= tailFade;
     vec3 overlayColor = texture2D(uOverlayTexture, overlayUv).rgb * overlayBounds;
     float baseLuminance = dot(videoColor, vec3(.299, .587, .114));
     float overlayLuminance = dot(overlayColor, vec3(.299, .587, .114));

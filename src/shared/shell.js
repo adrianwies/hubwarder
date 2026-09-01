@@ -1,4 +1,5 @@
 import {mountFooter} from '../components/footer.js';
+import {mountWhatsApp} from '../components/whatsapp.js';
 
 export const pageHeader=active=>`<header class="site-header header"><div class="header__inner container"><a class="site-brand header__brand" href="/" aria-label="HUB-WARDER, inicio"><img src="/images/logo-hub-blanco.png" alt="HUB-WARDER"></a><nav class="header__nav" aria-label="Navegación principal"><a class="${active==='inicio'?'active':''}" href="/">Inicio</a><a class="${active==='nosotros'?'active':''}" href="/nosotros/">Nosotros</a><a class="${active==='servicios'?'active':''}" href="/servicios/">Servicios</a><a class="${active==='plataforma'?'active':''}" href="/plataforma/">Plataforma</a><a class="${active==='contacto'?'active':''}" href="/contacto/">Contacto</a></nav><div class="header__auth"><a class="header-login" href="/iniciar-sesion/">Iniciar sesión</a><a class="header-cta btn-primary" href="/registrarse/">Registrarse</a></div></div></header>`;
-export const mountShell=active=>{const header=document.querySelector('[data-header]');if(header)header.innerHTML=pageHeader(active);mountFooter();};
+export const mountShell=active=>{const header=document.querySelector('[data-header]');if(header)header.innerHTML=pageHeader(active);mountFooter();mountWhatsApp();};

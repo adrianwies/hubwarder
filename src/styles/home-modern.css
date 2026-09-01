@@ -1666,9 +1666,10 @@
   .container-crane{min-height:min(720px,calc(100svh - var(--header-height) - 70px))}
 }
 @media (min-width:1001px) and (max-width:1280px){
-  .partners-crane-section .partners-section__layout{grid-template-columns:minmax(280px,.66fr) minmax(0,1.34fr);gap:clamp(24px,3vw,42px);padding-block:clamp(18px,3vh,34px)}
+  .partners-crane-section{--crane-laptop-offset:clamp(28px,4.5vh,42px)}
+  .partners-crane-section .partners-section__layout{height:calc(100% - var(--crane-laptop-offset));margin-top:var(--crane-laptop-offset);grid-template-columns:minmax(280px,.66fr) minmax(0,1.34fr);gap:clamp(24px,3vw,42px);padding-block:clamp(18px,3vh,34px)}
   .partners-crane-section .partners-section__copy h2{font-size:clamp(2.45rem,4vw,4.2rem)}
-  .container-crane{min-height:clamp(500px,calc(100svh - var(--header-height) - 44px),650px)}
+  .container-crane{min-height:clamp(500px,calc(100svh - var(--header-height) - 44px - var(--crane-laptop-offset)),650px)}
 }
 @media (max-width:1000px){
   .partners-crane-section .partners-section__sticky{height:calc(100svh - var(--header-height))}
@@ -1701,4 +1702,45 @@
   .partners-crane-section .partners-section__layout{padding-block:10px}
   .partners-crane-section .partners-section__description{margin-top:var(--space-4)}
   .container-crane{min-height:calc(100svh - var(--header-height) - 20px)}
+}
+/* Compact command/route composition on laptop viewports. */
+@media (min-width:981px) and (max-width:1600px){
+  .home-command-route{
+    min-height:clamp(580px,64svh,640px);
+  }
+  .home-command-route__sticky{
+    height:clamp(580px,64svh,640px);
+    padding-block:clamp(14px,2.2vh,22px);
+  }
+  .home-command-route .home-route__map{
+    height:clamp(220px,27vh,270px);
+    margin-top:var(--space-5);
+  }
+}
+
+/* Balanced top breathing room after the ocean scene. */
+@media (min-width:981px){
+  .home-command-route__sticky{
+    padding-top:clamp(44px,6svh,68px);
+    padding-bottom:clamp(14px,2svh,22px);
+  }
+}
+
+/* responsive-audit-2026: edge viewports for the home experience. */
+@media (max-width:480px){
+  .home-final-cta__actions,.hero__actions{align-items:stretch;flex-direction:column}
+  .home-final-cta__actions a,.hero__actions a{width:100%;justify-content:center}
+  .partners-crane-section .container-crane__status{max-width:calc(100% - 16px);white-space:normal;text-align:center}
+}
+@media (max-width:350px){
+  .partners-crane-section .partners-section__layout{padding-inline:2px}
+  .partners-crane-section .container-crane__yard{right:-3%;left:-3%}
+}
+@media (max-height:640px) and (min-width:701px){
+  .partners-crane-section .partners-section__copy h2{font-size:clamp(2rem,4vw,3.3rem)}
+  .partners-crane-section .container-crane{min-height:calc(100svh - var(--header-height) - 16px)}
+}
+@media (min-width:2000px){
+  .partners-crane-section .partners-section__layout{grid-template-columns:minmax(420px,.7fr) minmax(0,1.3fr)}
+  .partners-crane-section .container-crane{min-height:min(780px,calc(100svh - var(--header-height) - 80px))}
 }

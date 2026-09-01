@@ -1,1 +1,41 @@
-﻿.language-switcher{position:fixed;top:18px;right:18px;z-index:10000;display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #ffffff38;border-radius:999px;background:#090a0fcc;box-shadow:0 8px 28px #0004;backdrop-filter:blur(12px);color:#fff}.language-switcher select{appearance:none;min-width:42px;padding:2px 14px 2px 2px;border:0;background:transparent;color:#fff;font-weight:700;cursor:pointer}.language-switcher option{color:#111;background:#fff}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:900px){.language-switcher{top:auto;right:14px;bottom:14px}}
+.language-switcher{position:relative;z-index:2;flex:0 0 auto;min-height:46px;display:inline-flex;align-items:stretch;border:1px solid rgba(255,255,255,.24);border-radius:var(--radius-pill);color:var(--color-white);background:rgba(255,255,255,.035);transition:border-color var(--transition-fast),background var(--transition-fast)}
+.language-switcher:hover,.language-switcher.is-open{border-color:rgba(242,46,120,.72);background:rgba(255,255,255,.07)}
+.language-switcher__trigger{min-width:74px;display:flex;align-items:center;justify-content:center;gap:11px;padding:0 16px;border:0;color:inherit;background:transparent;font:inherit;font-size:var(--font-size-sm);font-weight:var(--font-weight-bold);cursor:pointer}
+.language-switcher__trigger svg{width:10px;fill:none;stroke:currentColor;stroke-width:2;transition:transform var(--transition-fast)}
+.language-switcher.is-open .language-switcher__trigger svg{transform:rotate(180deg)}
+.language-switcher__menu{position:absolute;top:calc(100% + 9px);right:0;z-index:10001;width:132px;overflow:hidden;padding:5px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-md);background:rgba(8,10,16,.98);box-shadow:0 18px 42px rgba(0,0,0,.36);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity var(--transition-fast),transform var(--transition-fast),visibility var(--transition-fast)}
+.language-switcher.is-open .language-switcher__menu{opacity:1;visibility:visible;transform:none}
+.language-switcher__menu button{width:100%;padding:9px 12px;border:0;border-radius:var(--radius-sm);color:rgba(255,255,255,.7);background:transparent;text-align:left;font:inherit;font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);cursor:pointer;transition:color var(--transition-fast),background var(--transition-fast)}
+.language-switcher__menu button:hover{color:#fff;background:rgba(255,255,255,.08)}
+.language-switcher__menu button.is-active{color:#fff;background:var(--gradient-brand)}
+.language-switcher__trigger:focus-visible,.language-switcher__menu button:focus-visible{outline:2px solid var(--color-primary-light);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:1100px){.header__auth{gap:8px}.language-switcher{min-height:42px}.language-switcher__trigger{min-width:66px;padding-inline:12px}}
+@media(max-width:390px){.header__inner{gap:8px}.language-switcher__trigger{min-width:58px;gap:7px;padding-inline:9px;font-size:.72rem}.header__auth .header-cta{padding-inline:8px}}
+@media(max-width:340px){.header__brand{width:118px!important}}
+/* El menú debe salir visualmente del alto fijo del header. */
+.header,.site-header,.header__inner,.header__auth{overflow:visible!important}
+.language-switcher{z-index:10000}
+.language-switcher__menu{z-index:10001}
+
+/* Dos opciones siempre visibles, aisladas de los estilos globales de botones. */
+.language-switcher{overflow:visible!important}
+.language-switcher__menu{
+  display:grid!important;
+  grid-template-rows:repeat(2,42px);
+  gap:4px;
+  min-height:98px;
+  height:auto!important;
+  overflow:visible!important;
+  box-sizing:border-box;
+}
+.language-switcher__menu button{
+  position:static!important;
+  min-width:0!important;
+  min-height:42px!important;
+  height:42px!important;
+  margin:0!important;
+  display:flex!important;
+  align-items:center;
+  box-sizing:border-box;
+}

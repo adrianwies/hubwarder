@@ -1,6 +1,7 @@
-﻿import './site.css';
+import './site.css';
 import './section-title.js';
 import './i18n.js';
+import './mobile-menu.js';
 
 const sharedHero=document.querySelector('.inner-page:not(.contact-page) .page-hero');
 if(sharedHero){

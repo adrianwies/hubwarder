@@ -1,4 +1,4 @@
-﻿import './styles/global.css';
+import './styles/global.css';
 import './logistics-road/logistics-road.css';
 import './ocean-voyage/ocean-voyage.css';
 import './styles/home-modern.css';
@@ -10,12 +10,15 @@ import { HorizontalTruckScene } from './partners-road/HorizontalTruckScene.js';
 import { OceanVoyageScene } from './ocean-voyage/OceanVoyageScene.js';
 import { HomeExperience } from './home/HomeExperience.js';
 import { mountFooter } from './components/footer.js';
+import { mountWhatsApp } from './components/whatsapp.js';
 import './shared/i18n.js';
+import './shared/mobile-menu.js';
 
 const globe = new GlobeScene({ container: document.querySelector('#globe') });
 const partnersRoad = new HorizontalTruckScene(document.querySelector('.partners-section'));
 const oceanVoyages = [new OceanVoyageScene(document.querySelector('[data-ocean-continuum]'))];
 mountFooter();
+mountWhatsApp();
 
 // Las escenas pesadas se preparan poco antes de entrar al viewport. AsÃ­ el
 // primer render no descarga dos GLB y dos videos que todavÃ­a no son visibles.

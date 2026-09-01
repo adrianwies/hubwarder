@@ -19,18 +19,31 @@ export class HorizontalTruckScene {
     return this;
   }
   measure(){
-    // Proporciones visibles medidas en los PNG: barra 50% del ancho y 90% de la altura.
-    const cargoWidth=this.cargo.offsetWidth;
+    const stage=this.stage.getBoundingClientRect();
+    const pileImage=this.stage.querySelector('.container-crane__yard img');
+    const pileBox=pileImage.getBoundingClientRect();
+    const naturalRatio=(pileImage.naturalWidth&&pileImage.naturalHeight)
+      ? pileImage.naturalWidth/pileImage.naturalHeight
+      : pileBox.width/pileBox.height;
+    let pileWidth=pileBox.width;
+    let pileHeight=pileWidth/naturalRatio;
+    if(pileHeight>pileBox.height){
+      pileHeight=pileBox.height;
+      pileWidth=pileHeight*naturalRatio;
+    }
+    const pileTop=pileBox.bottom-pileHeight;
+    const cargoWidth=Math.max(110,Math.min(pileWidth*.44,stage.width*.46,stage.height*.78));
+    this.cargo.style.width=cargoWidth+'px';
+    this.cargo.style.top=Math.min(180,Math.max(96,stage.height*.25))+'px';
     const rigWidth=cargoWidth/.50;
     this.trolley.style.width=rigWidth+'px';
-    this.trolley.style.top=(this.cargo.offsetTop-(rigWidth/1.5)*.90)+'px';
-    const stage=this.stage.getBoundingClientRect();
-    const pile=this.stage.querySelector('.container-crane__yard img').getBoundingClientRect();
+    const gripOffset=this.cargo.offsetHeight*.14;
+    this.trolley.style.top=(this.cargo.offsetTop-(rigWidth/1.5)*.90+gripOffset)+'px';
     const cargoBottom=this.cargo.offsetTop+this.cargo.offsetHeight;
     const rigBottom=this.trolley.offsetTop+this.trolley.offsetHeight;
+    const landingOverlap=Math.max(12,this.cargo.offsetHeight*.10);
     this.startY=-Math.max(cargoBottom,rigBottom)-48;
-    const scaleCompensation=Math.max(0,cargoWidth-410)/3;
-    this.dropY=Math.max(-4,12-scaleCompensation,pile.top-stage.top-cargoBottom-this.cargo.offsetHeight*1.10);
+    this.dropY=pileTop-stage.top-cargoBottom+landingOverlap;
   }
   buildTimeline(){
     this.measure();
@@ -38,11 +51,11 @@ export class HorizontalTruckScene {
       scrollTrigger:{trigger:this.section,start:'top top',end:'bottom bottom',scrub:.8,invalidateOnRefresh:true}
     });
     this.timeline
-      .fromTo([this.trolley,this.cargo],{y:()=>this.startY},{y:()=>this.dropY-2,duration:.55,ease:'power2.out'},0)
-      .to([this.trolley,this.cargo],{x:-5,duration:.12,ease:'sine.inOut'},.06)
-      .to([this.trolley,this.cargo],{x:4,duration:.14,ease:'sine.inOut'},.18)
-      .to([this.trolley,this.cargo],{x:-2,duration:.12,ease:'sine.inOut'},.32)
-      .to([this.trolley,this.cargo],{x:0,duration:.10,ease:'sine.out'},.44)
+      .set([this.trolley,this.cargo],{xPercent:-50,x:0,y:()=>this.startY},0)
+      .to([this.trolley,this.cargo],{x:-5,y:()=>this.startY+(this.dropY-this.startY)*.28,duration:.14,ease:'sine.inOut'},0)
+      .to([this.trolley,this.cargo],{x:4,y:()=>this.startY+(this.dropY-this.startY)*.56,duration:.14,ease:'sine.inOut'},.14)
+      .to([this.trolley,this.cargo],{x:-2,y:()=>this.startY+(this.dropY-this.startY)*.80,duration:.13,ease:'sine.inOut'},.28)
+      .to([this.trolley,this.cargo],{x:0,y:()=>this.dropY-2,duration:.14,ease:'power2.out'},.41)
       .to(this.cargo,{y:()=>this.dropY,duration:.04,ease:'sine.inOut'},.54)
       .to(this.stage,{'--crane-glow':1,duration:.07},.5)
       .to(this.trolley,{y:()=>this.dropY-12,duration:.06,ease:'power2.out'},.54)
@@ -52,8 +65,22 @@ export class HorizontalTruckScene {
       .to(this.status,{autoAlpha:1,duration:.08},.9);
     this.timeline.progress(0);
   }
-  refresh(){const progress=this.timeline?.progress()??0;this.measure();this.timeline?.invalidate().progress(progress);ScrollTrigger.refresh();}
-  destroy(){this.timeline?.scrollTrigger?.kill();this.timeline?.kill();this.resizeObserver?.disconnect();}
+  refresh(){
+    if(this.refreshFrame)return;
+    this.refreshFrame=requestAnimationFrame(()=>{
+      this.refreshFrame=0;
+      const progress=this.timeline?.progress()??0;
+      this.measure();
+      this.timeline?.invalidate().progress(progress);
+      ScrollTrigger.refresh();
+    });
+  }
+  destroy(){
+    if(this.refreshFrame)cancelAnimationFrame(this.refreshFrame);
+    this.timeline?.scrollTrigger?.kill();
+    this.timeline?.kill();
+    this.resizeObserver?.disconnect();
+  }
 }
 
 

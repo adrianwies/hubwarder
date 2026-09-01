@@ -1718,8 +1718,11 @@
   }
 }
 
-/* Balanced top breathing room after the ocean scene. */
+/* Balanced top breathing room and a calm sticky dwell after the ocean scene. */
 @media (min-width:981px){
+  .home-command-route{
+    min-height:clamp(620px,88svh,820px);
+  }
   .home-command-route__sticky{
     padding-top:clamp(44px,6svh,68px);
     padding-bottom:clamp(14px,2svh,22px);
@@ -1743,4 +1746,21 @@
 @media (min-width:2000px){
   .partners-crane-section .partners-section__layout{grid-template-columns:minmax(420px,.7fr) minmax(0,1.3fr)}
   .partners-crane-section .container-crane{min-height:min(780px,calc(100svh - var(--header-height) - 80px))}
+}
+/* crane-initialization-guard: prevents the raw CSS pose flashing on reload. */
+.partners-crane-section.is-crane-pending .container-crane__rig,
+.partners-crane-section.is-crane-pending .container-crane__cargo--image,
+.partners-crane-section.is-crane-pending .container-crane__status{
+  opacity:0;
+  visibility:hidden;
+}
+.partners-crane-section.is-crane-ready .container-crane__rig,
+.partners-crane-section.is-crane-ready .container-crane__cargo--image{
+  opacity:1;
+  visibility:visible;
+  transition:opacity .28s ease;
+}
+@media(prefers-reduced-motion:reduce){
+  .partners-crane-section.is-crane-ready .container-crane__rig,
+  .partners-crane-section.is-crane-ready .container-crane__cargo--image{transition:none}
 }

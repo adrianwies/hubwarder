@@ -14,6 +14,9 @@ export class HorizontalTruckScene {
     if(!this.stage||!this.trolley||!this.cargo)return this;
     await Promise.all([...this.stage.querySelectorAll('img')].map(image=>image.decode().catch(()=>{})));
     this.buildTimeline();
+    ScrollTrigger.refresh();
+    this.section.classList.remove('is-crane-pending');
+    this.section.classList.add('is-crane-ready');
     this.resizeObserver=new ResizeObserver(()=>this.refresh());
     this.resizeObserver.observe(this.stage);
     return this;
@@ -51,6 +54,7 @@ export class HorizontalTruckScene {
       scrollTrigger:{trigger:this.section,start:'top top',end:'bottom bottom',scrub:.8,invalidateOnRefresh:true}
     });
     this.timeline
+      .set(this.status,{autoAlpha:0},0)
       .set([this.trolley,this.cargo],{xPercent:-50,x:0,y:()=>this.startY},0)
       .to([this.trolley,this.cargo],{x:-5,y:()=>this.startY+(this.dropY-this.startY)*.28,duration:.14,ease:'sine.inOut'},0)
       .to([this.trolley,this.cargo],{x:4,y:()=>this.startY+(this.dropY-this.startY)*.56,duration:.14,ease:'sine.inOut'},.14)

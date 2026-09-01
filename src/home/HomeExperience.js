@@ -7,7 +7,12 @@ export class HomeExperience {
   constructor(){this.animations=[];}
   init(){
     document.querySelectorAll('.home-reveal').forEach((element,index)=>{
-      const tween=gsap.fromTo(element,{autoAlpha:0,y:48},{autoAlpha:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:element,start:'top 86%',once:true},delay:(index%3)*.04});
+      const commandReveal=element.closest('.home-command-route');
+      const tween=gsap.fromTo(
+        element,
+        {autoAlpha:0,y:commandReveal?30:48},
+        {autoAlpha:1,y:0,duration:commandReveal?1.08:.9,ease:'power3.out',scrollTrigger:{trigger:element,start:commandReveal?'top 92%':'top 86%',once:true},delay:(index%3)*.04}
+      );
       this.animations.push(tween);
     });
     const route=document.querySelector('[data-route-progress]');

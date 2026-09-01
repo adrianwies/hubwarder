@@ -1,5 +1,6 @@
-import './site.css';
+﻿import './site.css';
 import './section-title.js';
+import './i18n.js';
 
 const sharedHero=document.querySelector('.inner-page:not(.contact-page) .page-hero');
 if(sharedHero){
@@ -15,4 +16,5 @@ if(sharedHero){
     requestAnimationFrame(()=>requestAnimationFrame(()=>sharedHero.classList.add('is-hero-ready')));
   }
 }
-const header=document.querySelector('.site-header');const onScroll=()=>header?.classList.toggle('is-scrolled',scrollY>16);onScroll();addEventListener('scroll',onScroll,{passive:true});document.querySelectorAll('[data-year]').forEach(n=>n.textContent=new Date().getFullYear());document.querySelectorAll('form[data-demo-form]').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const message=form.querySelector('[data-form-message]');if(message)message.textContent='Gracias. Hemos recibido tus datos y un asesor continuará contigo.';}));
+const header=document.querySelector('.site-header');const onScroll=()=>header?.classList.toggle('is-scrolled',scrollY>16);onScroll();addEventListener('scroll',onScroll,{passive:true});document.querySelectorAll('[data-year]').forEach(n=>n.textContent=new Date().getFullYear());document.querySelectorAll('form[data-demo-form]').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const message=form.querySelector('[data-form-message]');if(message)message.textContent='Gracias. Hemos recibido tus datos y un asesor continuarÃ¡ contigo.';}));
+

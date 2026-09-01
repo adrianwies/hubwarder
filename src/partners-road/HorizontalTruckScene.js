@@ -1,82 +1,73 @@
-import * as THREE from 'three';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { createTruckInstance } from '../logistics-road/TruckAsset.js';
-
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export class HorizontalTruckScene {
   constructor(section){
-    this.section=section;this.canvas=section?.querySelector('[data-partners-truck]');this.progress=0;this.raf=0;this.visible=false;
-    this.wheels=[];this.ownedMaterials=new Set();this.truckSize=new THREE.Vector3();this.startX=0;this.endX=0;this.motionState={progress:0};this.lastOpacity=-1;
-    this.stops=[...section?.querySelectorAll('[data-partner-stop]')??[]];this.trackProgress=section?.querySelector('[data-partners-progress]');
+    this.section=section;
+    this.stage=section?.querySelector('[data-container-crane]');
+    this.trolley=section?.querySelector('[data-crane-trolley]');
+    this.cargo=section?.querySelector('[data-crane-cargo]');
+    this.status=section?.querySelector('[data-crane-status]');
   }
   async init(){
-    if(!this.canvas)return this;
-    this.scene=new THREE.Scene();this.camera=new THREE.OrthographicCamera(-10,10,3,-3,.1,120);
-    this.camera.position.set(0,1.7,12);this.camera.lookAt(0,1.7,0);
-    this.renderer=new THREE.WebGLRenderer({canvas:this.canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));this.renderer.outputColorSpace=THREE.SRGBColorSpace;
-    this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1;
-    this.renderer.shadowMap.enabled=false;
-    this.scene.add(new THREE.HemisphereLight(0xffffff,0x29364b,2.2));
-    const key=new THREE.DirectionalLight(0xffffff,3);key.position.set(-8,13,12);key.castShadow=true;key.shadow.mapSize.set(1024,1024);this.scene.add(key);
-    const rim=new THREE.DirectionalLight(0xff7a32,1.4);rim.position.set(12,7,-8);this.scene.add(rim);
-
-    const instance=await createTruckInstance({cloneMaterials:true});this.model=instance.model;this.ownedMaterials=instance.ownedMaterials;
-    this.model.traverse(object=>{if(object.isMesh){object.castShadow=false;object.receiveShadow=false;}if(/^Wheel_/.test(object.name))this.wheels.push({object,base:object.rotation.z});});
-    const box=new THREE.Box3().setFromObject(this.model),size=box.getSize(new THREE.Vector3());
-    const scale=7.2/size.x;this.model.scale.setScalar(scale);this.model.updateMatrixWorld(true);
-    const scaledBox=new THREE.Box3().setFromObject(this.model),center=scaledBox.getCenter(new THREE.Vector3());
-    this.model.position.set(-center.x,-scaledBox.min.y,-center.z);this.truckPivot=new THREE.Group();this.truckPivot.name='HorizontalTruckRoot';this.truckPivot.add(this.model);this.scene.add(this.truckPivot);
-    scaledBox.setFromObject(this.model);scaledBox.getSize(this.truckSize);
-    this.setOpacity(0);this.resize();
-    this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(this.canvas);
-    gsap.set(this.trackProgress,{scaleX:0,transformOrigin:'left'});
-    this.timeline=gsap.timeline({scrollTrigger:{trigger:this.section,start:'top top',end:'bottom bottom',scrub:1.15,invalidateOnRefresh:true,onUpdate:self=>this.setActiveStop(self.progress),onEnter:()=>this.setActive(true),onEnterBack:()=>this.setActive(true),onLeave:()=>{this.setActiveStop(-1);this.setActive(false);},onLeaveBack:()=>{this.setActiveStop(-1);this.setActive(false);this.motionState.progress=0;this.update(0);}}});
-    this.trigger=this.timeline.scrollTrigger;
-    this.timeline.to(this.motionState,{progress:1,duration:100,ease:'none',onUpdate:()=>this.update(this.motionState.progress)},0)
-      .to(this.trackProgress,{scaleX:1,duration:100,ease:'none'},0)
-      .fromTo(this.section.querySelector('.partners-section__layout'),{autoAlpha:0,y:24},{autoAlpha:1,y:0,duration:8,ease:'none'},0);
-    this.setActiveStop(0);
-    this.intersectionObserver=new IntersectionObserver(([entry])=>this.setActive(entry.isIntersecting),{rootMargin:'30% 0px'});this.intersectionObserver.observe(this.section);
-    this.update(0);return this;
+    if(!this.stage||!this.trolley||!this.cargo)return this;
+    await Promise.all([...this.stage.querySelectorAll('img')].map(image=>image.decode().catch(()=>{})));
+    this.buildTimeline();
+    this.resizeObserver=new ResizeObserver(()=>this.refresh());
+    this.resizeObserver.observe(this.stage);
+    return this;
   }
-  resize(){
-    const rect=this.canvas.getBoundingClientRect();if(!rect.width||!rect.height)return;
-    const viewHeight=5.2,halfHeight=viewHeight/2,halfWidth=halfHeight*(rect.width/rect.height);
-    this.camera.left=-halfWidth;this.camera.right=halfWidth;this.camera.top=halfHeight;this.camera.bottom=-halfHeight;this.camera.updateProjectionMatrix();
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));this.renderer.setSize(rect.width,rect.height,false);
-    const truckHalf=this.truckSize.x/2;
-    this.startX=-halfWidth-truckHalf-1;this.endX=halfWidth+truckHalf+1;
-    this.update(this.progress);
+  measure(){
+    // Proporciones visibles medidas en los PNG: barra 50% del ancho y 90% de la altura.
+    const cargoWidth=this.cargo.offsetWidth;
+    const rigWidth=cargoWidth/.50;
+    this.trolley.style.width=rigWidth+'px';
+    this.trolley.style.top=(this.cargo.offsetTop-(rigWidth/1.5)*.90)+'px';
+    const stage=this.stage.getBoundingClientRect();
+    const pile=this.stage.querySelector('.container-crane__yard img').getBoundingClientRect();
+    const cargoBottom=this.cargo.offsetTop+this.cargo.offsetHeight;
+    const rigBottom=this.trolley.offsetTop+this.trolley.offsetHeight;
+    this.startY=-Math.max(cargoBottom,rigBottom)-48;
+    const scaleCompensation=Math.max(0,cargoWidth-410)/3;
+    this.dropY=Math.max(-4,12-scaleCompensation,pile.top-stage.top-cargoBottom-this.cargo.offsetHeight*1.10);
   }
-  setOpacity(value){if(Math.abs(value-this.lastOpacity)<.008)return;this.lastOpacity=value;this.ownedMaterials.forEach(material=>{material.transparent=true;material.opacity=value;material.depthWrite=value>.98;});}
-  update(progress){
-    this.progress=THREE.MathUtils.clamp(progress,0,1);if(!this.truckPivot)return;
-    const x=THREE.MathUtils.lerp(this.startX,this.endX,this.progress);
-    // Keep a constant vertical position: the truck travels straight with its
-    // tyre contact patch resting on the CSS road for the entire sequence.
-    this.truckPivot.position.set(x,-.27,0);
-    const distance=(this.endX-this.startX)*this.progress,wheelRotation=distance/(.48*this.model.scale.x);
-    this.wheels.forEach(({object,base})=>{object.rotation.z=base-wheelRotation;});
-    this.setOpacity(THREE.MathUtils.smoothstep(this.progress,.02,.1));
-    this.requestRender();
+  buildTimeline(){
+    this.measure();
+    this.timeline=gsap.timeline({
+      scrollTrigger:{trigger:this.section,start:'top top',end:'bottom bottom',scrub:.8,invalidateOnRefresh:true}
+    });
+    this.timeline
+      .fromTo([this.trolley,this.cargo],{y:()=>this.startY},{y:()=>this.dropY-2,duration:.55,ease:'power2.out'},0)
+      .to([this.trolley,this.cargo],{x:-5,duration:.12,ease:'sine.inOut'},.06)
+      .to([this.trolley,this.cargo],{x:4,duration:.14,ease:'sine.inOut'},.18)
+      .to([this.trolley,this.cargo],{x:-2,duration:.12,ease:'sine.inOut'},.32)
+      .to([this.trolley,this.cargo],{x:0,duration:.10,ease:'sine.out'},.44)
+      .to(this.cargo,{y:()=>this.dropY,duration:.04,ease:'sine.inOut'},.54)
+      .to(this.stage,{'--crane-glow':1,duration:.07},.5)
+      .to(this.trolley,{y:()=>this.dropY-12,duration:.06,ease:'power2.out'},.54)
+      .set(this.cargo,{zIndex:1},.57)
+      .set(this.status,{textContent:'Contenedor entregado'},.57)
+      .to(this.trolley,{y:()=>this.startY,duration:.35,ease:'power1.inOut'},.62)
+      .to(this.status,{autoAlpha:1,duration:.08},.9);
+    this.timeline.progress(0);
   }
-  setActiveStop(progress){
-    if(!this.stops.length)return;
-    let activeIndex=-1;
-    if(progress>=0&&progress<.98){
-      const boundaries=[.20,.36,.52,.68,.83];
-      activeIndex=boundaries.findIndex(boundary=>progress<boundary);
-      if(activeIndex===-1)activeIndex=this.stops.length-1;
-    }
-    this.stops.forEach((stop,index)=>stop.classList.toggle('is-active',index===activeIndex));
-  }
-  setActive(active){if(this.visible===active)return;this.visible=active;if(active)this.requestRender();else{cancelAnimationFrame(this.raf);this.raf=0;this.renderer.clear();}}
-  requestRender(){if(!this.visible||this.raf)return;this.raf=requestAnimationFrame(()=>{this.raf=0;if(this.visible)this.renderer.render(this.scene,this.camera);});}
-  destroy(){
-    cancelAnimationFrame(this.raf);this.timeline?.kill();this.trigger?.kill();this.resizeObserver?.disconnect();this.intersectionObserver?.disconnect();
-    this.ownedMaterials.forEach(material=>material.dispose());this.scene?.traverse(object=>{if(object===this.model||this.model?.getObjectById(object.id))return;object.geometry?.dispose();const materials=Array.isArray(object.material)?object.material:[object.material];materials.forEach(material=>material?.dispose());});this.renderer?.dispose();
-  }
+  refresh(){const progress=this.timeline?.progress()??0;this.measure();this.timeline?.invalidate().progress(progress);ScrollTrigger.refresh();}
+  destroy(){this.timeline?.scrollTrigger?.kill();this.timeline?.kill();this.resizeObserver?.disconnect();}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

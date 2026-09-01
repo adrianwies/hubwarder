@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -145,26 +145,16 @@
           </div>
         </div>
       </section>
-
-      <section
+<section class="ocean-continuum" data-ocean-continuum aria-label="Recorrido logístico y marítimo continuo">
+  <div class="ocean-continuum__sticky" aria-hidden="true">
+    <canvas class="ocean-continuum__canvas" data-ocean-voyage></canvas>
+    <div class="ocean-continuum__shade"></div>
+  </div><section
         id="services"
-        class="content-section section section--light logistics-road"
+        class="content-section section section--light logistics-road logistics-road--continuum"
         aria-labelledby="logistics-title"
       >
-        <div class="logistics-road__sticky">
-          <canvas
-            class="logistics-road__canvas"
-            data-logistics-canvas
-            aria-label="Recorrido 3D de una importación hasta el centro logístico"
-          ></canvas>
-          <div class="logistics-road__progress" aria-hidden="true">
-            <i data-road-progress></i>
-          </div>
-          <p class="logistics-road__status" data-road-status>
-            Origen confirmado
-          </p>
-        </div>
-        <div class="logistics-road__content container">
+<div class="logistics-road__content container">
           <header class="logistics-road__intro">
             <p class="eyebrow">Importación conectada</p>
             <h2 id="logistics-title">
@@ -267,19 +257,12 @@
           </article>
         </div>
       </section>
-
-      <section
+<section
         id="ocean-voyage"
-        class="ocean-voyage"
+        class="ocean-voyage ocean-voyage--continuum"
         aria-labelledby="ocean-voyage-title"
       >
         <div class="ocean-voyage__sticky">
-          <canvas
-            class="ocean-voyage__canvas"
-            data-ocean-voyage
-            aria-label="Barco de carga en recorrido marítimo"
-          ></canvas>
-          <div class="ocean-voyage__shade" aria-hidden="true"></div>
           <div class="ocean-voyage__copy container">
             <div class="ocean-voyage__lead" data-ocean-lead>
               <p class="eyebrow">Transporte marítimo</p>
@@ -327,6 +310,8 @@
           <p class="ocean-voyage__status"><span></span> Navegación en curso</p>
         </div>
       </section>
+</section>
+
 
       <section
         class="home-command home-route home-command-route"
@@ -437,55 +422,30 @@
         </div>
       </section>
 
-      <section
-        id="contact"
-        class="partners-section"
-        aria-labelledby="partners-title"
-      >
-        <div class="partners-section__sticky">
-          <div class="partners-section__layout container">
-            <div class="partners-section__copy">
-              <p class="eyebrow">Alianzas que nos impulsan</p>
-              <h2 id="partners-title">
-                Empresas que<br /><em>avanzan con nosotros.</em>
-              </h2>
-              <a class="partners-section__cta" href="/contacto/"
-                >Construyamos la próxima ruta
-                <span aria-hidden="true">↗</span></a
-              >
-            </div>
-            <p class="partners-section__description">
-              Construimos relaciones duraderas con empresas que necesitan
-              coordinación, visibilidad y confianza en cada operación.
-            </p>
-          </div>
-          <div class="partners-road" aria-hidden="true">
-            <div class="partners-track"><i data-partners-progress></i></div>
-            <div class="partners-stops">
-              <div class="partner-stop" style="--stop-x: 15%" data-partner-stop>
-                <img src="./imagenes/logo-gabs.png" alt="" /><i></i><b></b>
-              </div>
-              <div class="partner-stop" style="--stop-x: 29%" data-partner-stop>
-                <img src="./imagenes/logo-lc.png" alt="" /><i></i><b></b>
-              </div>
-              <div class="partner-stop" style="--stop-x: 43%" data-partner-stop>
-                <img src="./imagenes/logo-probas.png" alt="" /><i></i><b></b>
-              </div>
-              <div class="partner-stop" style="--stop-x: 57%" data-partner-stop>
-                <img src="./imagenes/logo-canasteria.png" alt="" /><i></i
-                ><b></b>
-              </div>
-              <div class="partner-stop" style="--stop-x: 71%" data-partner-stop>
-                <img src="./imagenes/logo-cm.png" alt="" /><i></i><b></b>
-              </div>
-              <div class="partner-stop" style="--stop-x: 85%" data-partner-stop>
-                <img src="./imagenes/logo-gtg.png" alt="" /><i></i><b></b>
-              </div>
-            </div>
-            <canvas data-partners-truck></canvas>
-          </div>
+      <section id="contact" class="partners-section partners-crane-section" aria-labelledby="partners-title">
+  <div class="partners-section__sticky">
+    <div class="partners-section__layout container">
+      <div class="partners-section__copy">
+        <p class="eyebrow">Alianzas que nos impulsan</p>
+        <h2 id="partners-title">Empresas que<br><em>avanzan con nosotros.</em></h2>
+        <p class="partners-section__description">Construimos relaciones duraderas con empresas que necesitan coordinación, visibilidad y confianza en cada operación.</p>
+        <a class="partners-section__cta" href="/contacto/">Construyamos la próxima ruta <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="container-crane" data-container-crane aria-label="Garra colocando un contenedor LC sobre una pirámide de contenedores">
+        <div class="container-crane__rig" data-crane-trolley>
+          <img src="./imagenes/una-grua.png" alt="" aria-hidden="true">
         </div>
-      </section>
+        <div class="container-crane__cargo container-crane__cargo--image" data-crane-cargo>
+          <img src="./imagenes/contenedor-lc.png" alt="Contenedor LC">
+        </div>
+        <figure class="container-crane__yard">
+          <img src="./imagenes/contenedorestotal.png" alt="Pirámide de contenedores en el patio logístico">
+        </figure>
+        <p class="container-crane__status" data-crane-status>Contenedor asegurado</p>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
 
     <div data-footer></div>
@@ -507,3 +467,13 @@
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+

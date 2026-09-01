@@ -1,4 +1,4 @@
-import './styles/global.css';
+﻿import './styles/global.css';
 import './logistics-road/logistics-road.css';
 import './ocean-voyage/ocean-voyage.css';
 import './styles/home-modern.css';
@@ -6,20 +6,19 @@ import { GlobeScene } from './globe/GlobeScene.js';
 import { GlobeAnimations } from './globe/GlobeAnimations.js';
 import { runLoader } from './components/loader.js';
 import { preloadCritical } from './utils/preload.js';
-import { LogisticsRoadScene } from './logistics-road/LogisticsRoadScene.js';
 import { HorizontalTruckScene } from './partners-road/HorizontalTruckScene.js';
 import { OceanVoyageScene } from './ocean-voyage/OceanVoyageScene.js';
 import { HomeExperience } from './home/HomeExperience.js';
 import { mountFooter } from './components/footer.js';
+import './shared/i18n.js';
 
 const globe = new GlobeScene({ container: document.querySelector('#globe') });
-const logisticsRoad = new LogisticsRoadScene(document.querySelector('.logistics-road'));
 const partnersRoad = new HorizontalTruckScene(document.querySelector('.partners-section'));
-const oceanVoyage = new OceanVoyageScene(document.querySelector('.ocean-voyage'));
+const oceanVoyages = [new OceanVoyageScene(document.querySelector('[data-ocean-continuum]'))];
 mountFooter();
 
-// Las escenas pesadas se preparan poco antes de entrar al viewport. Así el
-// primer render no descarga dos GLB y dos videos que todavía no son visibles.
+// Las escenas pesadas se preparan poco antes de entrar al viewport. AsÃ­ el
+// primer render no descarga dos GLB y dos videos que todavÃ­a no son visibles.
 const lazyScenes = [];
 function initSceneWhenNear(scene, element, rootMargin = '120% 0px') {
   if (!element) return null;
@@ -39,19 +38,11 @@ function initSceneWhenNear(scene, element, rootMargin = '120% 0px') {
   return { start };
 }
 
-initSceneWhenNear(logisticsRoad, logisticsRoad.section, '150% 0px');
-const oceanLazyScene = initSceneWhenNear(oceanVoyage, oceanVoyage.section, '35% 0px');
 initSceneWhenNear(partnersRoad, partnersRoad.section, '100% 0px');
 
-await runLoader(Promise.all([preloadCritical(), globe.init()]));
+await runLoader(Promise.all([preloadCritical(), globe.init(), ...oceanVoyages.map(scene => scene.init())]));
 const animations = new GlobeAnimations(globe).init();
 const homeExperience = new HomeExperience().init();
-
-// Compila y prepara la escena marÃ­tima durante tiempo ocioso, evitando que
-// esa tarea coincida con el Ãºltimo tramo de scroll del camiÃ³n.
-const prepareOcean = () => oceanLazyScene?.start();
-if ('requestIdleCallback' in window) requestIdleCallback(prepareOcean, { timeout: 1800 });
-else setTimeout(prepareOcean, 600);
 
 window.hubWarderGlobe = globe;
 window.addEventListener('pagehide', () => {
@@ -59,7 +50,16 @@ window.addEventListener('pagehide', () => {
   animations.destroy();
   homeExperience.destroy();
   globe.destroy();
-  logisticsRoad.destroy();
-  oceanVoyage.destroy();
+  oceanVoyages.forEach(scene => scene.destroy());
   partnersRoad.destroy();
 }, { once: true });
+
+
+
+
+
+
+
+
+
+

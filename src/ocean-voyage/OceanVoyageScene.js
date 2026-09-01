@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+﻿import * as THREE from 'three';
 import { OceanSurface, getWaveHeight } from './OceanSurface.js';
 import { ShipBuoyancy } from './ShipBuoyancy.js';
 import { ShipScrollController } from './ShipScrollController.js';
@@ -64,12 +64,17 @@ export class OceanVoyageScene {
     });
 
     this.resize();
+    // Render inicial: evita mostrar solamente el color azul antes de entrar al viewport.
+    this.ocean.update(0);
+    this.buoyancy.update(0, this.ocean.time, 0);
+    this.renderer.render(this.scene, this.camera);
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(this.canvas);
     this.intersectionObserver = new IntersectionObserver(([entry]) => {
       this.setActive(entry.isIntersecting);
     }, { rootMargin: '0px', threshold: .01 });
     this.intersectionObserver.observe(this.section);
+    this.section.classList.add('is-ocean-ready');
     return this;
   }
 
@@ -108,7 +113,7 @@ export class OceanVoyageScene {
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, this.mobile ? 1 : 1.25));
     const viewHeight = 2 * this.camera.position.y * Math.tan(THREE.MathUtils.degToRad(this.camera.fov * .5));
     const shipHalf = (this.shipDimensions?.length ?? 8.8) * .5;
-    this.scrollController?.setTravelBounds(-viewHeight * .5 - shipHalf, viewHeight * .5 + shipHalf);
+    this.scrollController?.setTravelBounds(-viewHeight * .34, viewHeight * .58 + shipHalf);
   }
 
   setActive(active) {
@@ -148,3 +153,9 @@ export class OceanVoyageScene {
     this.renderer?.dispose();
   }
 }
+
+
+
+
+
+

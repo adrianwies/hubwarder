@@ -18,3 +18,87 @@
 @media(min-width:1440px){.services-hero__copy h1{font-size:clamp(5.4rem,5.4vw,7rem)}}
 @media(max-width:1100px){.services-hero{padding-top:145px;padding-bottom:76px}.services-hero__copy h1{font-size:clamp(3.4rem,7vw,5rem)}}
 @media(max-width:700px){.services-hero{min-height:auto;padding-top:118px;padding-bottom:62px}.services-hero__copy h1{font-size:clamp(2.55rem,12vw,4rem)}}
+/* Imágenes finales de Importaciones y Exportaciones. */
+.service-media:has(>img){
+  min-height:0;
+  background:transparent;
+}
+.service-media>img{
+  position:relative;
+  z-index:0;
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+.service-media:has(>img):after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 62%,rgba(5,7,12,.22));
+}
+.service-media:has(>img) .media-caption,
+.service-media:has(>img) .media-route{
+  z-index:2;
+}
+/* Primeras dos ilustraciones sin tarjeta, etiquetas ni fondo. */
+.service-chapter:nth-of-type(1) .service-media,
+.service-chapter:nth-of-type(2) .service-media{
+  overflow:visible;
+  border-radius:0;
+  background:none;
+  box-shadow:none;
+}
+.service-chapter:nth-of-type(1) .service-media:after,
+.service-chapter:nth-of-type(2) .service-media:after{
+  display:none;
+}
+/* Formato visual uniforme para las dos primeras imágenes. */
+.service-chapter:nth-of-type(1) .service-media,
+.service-chapter:nth-of-type(2) .service-media{
+  width:100%;
+  min-height:0;
+  aspect-ratio:16 / 9;
+}
+.service-chapter:nth-of-type(1) .service-media>img,
+.service-chapter:nth-of-type(2) .service-media>img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+/* Formato maestro para todas las imágenes de los seis servicios. */
+.services-journey .service-media,
+.services-journey .service-media--tall,
+.services-journey .service-media--wide{
+  width:100%;
+  min-height:0;
+  aspect-ratio:16 / 9;
+}
+.services-journey .service-media>img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+/* Escala compacta común para las imágenes de servicios. */
+.services-journey .service-media,
+.services-journey .service-media--tall,
+.services-journey .service-media--wide{
+  width:min(82%,520px);
+  justify-self:center;
+}
+@media(max-width:760px){
+  .services-journey .service-media,
+  .services-journey .service-media--tall,
+  .services-journey .service-media--wide{
+    width:min(92%,520px);
+    align-self:center;
+  }
+}

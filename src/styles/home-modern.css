@@ -1558,3 +1558,97 @@
   .home-command-route .home-command__principles article { min-height:145px; }
   .home-command-route .home-route__map { min-height:320px; margin-top:34px; }
 }
+
+/* container-crane-remodel */
+.partners-crane-section{min-height:260vh;background:linear-gradient(135deg,var(--color-white),var(--bg-light) 58%,var(--bg-pink-soft))}
+.partners-crane-section .partners-section__sticky{top:var(--header-height);height:calc(100svh - var(--header-height));overflow:hidden}
+.partners-crane-section .partners-section__layout{height:100%;grid-template-columns:minmax(340px,.78fr) minmax(520px,1.22fr);gap:clamp(42px,6vw,100px);align-items:center;padding-block:clamp(24px,4vh,54px)}
+.partners-crane-section .partners-section__copy{align-self:center}
+.partners-crane-section .partners-section__description{margin:var(--space-8) 0 0}
+.container-crane{--crane-glow:0;position:relative;align-self:stretch;min-height:560px;overflow:hidden;border:1px solid color-mix(in srgb,var(--color-primary) 14%,var(--border-color));border-radius:var(--radius-xl);background:linear-gradient(180deg,#f8f9fc 0%,#eef1f6 64%,#dde3eb 100%);box-shadow:var(--shadow-lg);isolation:isolate}
+.container-crane::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 68%,rgba(242,46,120,calc(var(--crane-glow)*.14)),transparent 30%),linear-gradient(90deg,rgba(19,35,59,.035) 1px,transparent 1px),linear-gradient(rgba(19,35,59,.035) 1px,transparent 1px);background-size:auto,44px 44px,44px 44px;pointer-events:none}
+.container-crane__beam{position:absolute;z-index:6;top:20px;left:5%;width:90%;height:22px;border-radius:5px;background:linear-gradient(180deg,#26354b,#101a29);box-shadow:0 8px 18px rgba(19,35,59,.2)}
+.container-crane__beam::before,.container-crane__beam::after{content:"";position:absolute;top:-7px;width:56px;height:36px;border:6px solid var(--color-accent);border-bottom:0}
+.container-crane__beam::before{left:5%}.container-crane__beam::after{right:5%}
+.container-crane__beam i{position:absolute;left:50%;top:3px;width:74px;height:16px;border-radius:4px;background:var(--gradient-brand);transform:translateX(-50%)}
+.container-crane__trolley{position:absolute;z-index:7;top:38px;left:50%;width:150px;height:112px;transform:translateX(-50%);will-change:transform}
+.container-crane__cables{position:absolute;inset:0 21px 24px;display:flex;justify-content:space-between}
+.container-crane__cables i{display:block;width:2px;height:100%;background:linear-gradient(#26354b,#677389)}
+.container-crane__spreader{position:absolute;right:0;bottom:6px;left:0;height:17px;border-radius:4px;background:linear-gradient(180deg,#ff8b42,#ec5d31);box-shadow:0 5px 12px rgba(19,35,59,.22)}
+.container-crane__spreader span{position:absolute;top:4px;left:50%;width:54%;height:5px;border-radius:99px;background:#26354b;transform:translateX(-50%)}
+.container-crane__claw{position:absolute;top:12px;width:18px;height:25px;border:4px solid #26354b;border-top:0;transform-origin:top center}
+.container-crane__claw--left{left:8px;border-right:0}.container-crane__claw--right{right:8px;border-left:0}
+.container-crane__cargo{position:absolute;z-index:5;top:150px;left:50%;width:min(300px,45%);aspect-ratio:3.15/1;border:4px solid #8b193f;border-radius:4px;background:linear-gradient(135deg,#ef2f75,#c71f5b);box-shadow:inset 0 0 0 3px rgba(255,255,255,.12),0 14px 24px rgba(19,35,59,.2);transform:translateX(-50%);will-change:transform}
+.container-crane__cargo::before,.container-crane__cargo::after{content:"";position:absolute;top:7%;bottom:7%;width:8px;border:2px solid rgba(255,255,255,.35)}.container-crane__cargo::before{left:7px}.container-crane__cargo::after{right:7px}
+.container-crane__ribs{position:absolute;inset:5px 24px;background:repeating-linear-gradient(90deg,transparent 0 15px,rgba(90,8,43,.32) 15px 18px)}
+.container-crane__cargo img{position:absolute;z-index:2;inset:20% 31%;width:38%;height:60%;object-fit:contain;filter:brightness(0) invert(1)}
+.container-crane__yard{position:absolute;z-index:2;right:3%;bottom:0;left:3%;height:48%;margin:0;display:flex;align-items:flex-end;justify-content:center}
+.container-crane__yard img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 18px 20px rgba(19,35,59,.18))}
+.container-crane__status{position:absolute;z-index:8;right:22px;bottom:18px;margin:0;padding:9px 13px;border:1px solid var(--border-brand);border-radius:var(--radius-pill);background:rgba(255,255,255,.88);color:var(--color-primary);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
+@media(max-width:1000px){.partners-crane-section{min-height:280vh}.partners-crane-section .partners-section__layout{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:20px;align-items:start}.partners-crane-section .partners-section__copy{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}.partners-crane-section .partners-section__copy h2{font-size:clamp(2.1rem,6vw,3.7rem)}.partners-crane-section .partners-section__description{margin:0}.container-crane{width:100%;min-height:430px}}
+@media(max-width:600px){.partners-crane-section{min-height:300vh}.partners-crane-section .partners-section__layout{padding-block:18px}.partners-crane-section .partners-section__copy{display:block}.partners-crane-section .partners-section__description{margin-top:14px}.container-crane{min-height:390px}.container-crane__cargo{width:48%}.container-crane__yard{height:43%}}
+
+/* crane-real-images: garra, carga y pila usan los PNG proporcionados. */
+.container-crane__beam,.container-crane__trolley,.container-crane__cables,.container-crane__spreader{display:none!important}
+.container-crane__rig{position:absolute;z-index:7;top:6px;left:50%;width:clamp(190px,25vw,300px);aspect-ratio:1.5/1;transform:translateX(-50%);will-change:transform}
+.container-crane__rig img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 10px 12px rgba(19,35,59,.2))}
+.container-crane .container-crane__cargo--image{position:absolute;z-index:6;top:clamp(130px,20vh,188px);left:50%;width:clamp(220px,31vw,360px);height:auto;aspect-ratio:3/1;border:0;border-radius:0;background:none;box-shadow:none;transform:translateX(-50%);will-change:transform}
+.container-crane .container-crane__cargo--image::before,.container-crane .container-crane__cargo--image::after{content:none}
+.container-crane .container-crane__cargo--image img{position:static;display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 14px rgba(19,35,59,.2))}
+.container-crane .container-crane__yard{right:2%;left:2%;height:47%}
+.container-crane .container-crane__yard img{object-fit:contain;object-position:center bottom}
+@media(max-width:600px){.container-crane__rig{width:clamp(160px,44vw,220px)}.container-crane .container-crane__cargo--image{top:118px;width:clamp(190px,58vw,275px)}.container-crane .container-crane__yard{height:42%}}
+
+/* Alineacion visible: compensa el espacio transparente interno de una-grua.png. */
+.container-crane__rig{top:clamp(82px,12vh,112px)}
+
+/* corner-grip-alignment: el JS dimensiona la barra amarilla de esquina a esquina. */
+.container-crane__rig{max-width:none}
+
+/* raise-container-pyramid: acerca la pila al contenedor que entrega la garra. */
+.container-crane .container-crane__yard{bottom:clamp(138px,18vh,190px)}
+@media(max-width:600px){.container-crane .container-crane__yard{bottom:clamp(82px,12vh,118px)}}
+
+/* match-pyramid-container-scale: el LC equivale a una unidad de la piramide. */
+.container-crane .container-crane__cargo--image{width:43%;min-width:270px;max-width:460px}
+@media(max-width:600px){.container-crane .container-crane__cargo--image{width:42%;min-width:205px;max-width:285px}}
+
+
+
+/* crane-section-root-integration: escena abierta, sin tarjeta rectangular. */
+.partners-crane-section{
+  background:
+    radial-gradient(circle at 78% 52%,color-mix(in srgb,var(--color-primary) 7%,transparent),transparent 34%),
+    linear-gradient(135deg,var(--color-white),var(--bg-light) 62%,var(--bg-pink-soft));
+}
+.partners-crane-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.42;
+  background-image:
+    linear-gradient(color-mix(in srgb,var(--color-heading) 4%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--color-heading) 4%,transparent) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 38%,#000 100%);
+}
+.partners-crane-section .partners-section__layout{
+  position:relative;
+  z-index:1;
+  grid-template-columns:minmax(320px,.72fr) minmax(540px,1.28fr);
+  gap:clamp(36px,5vw,84px);
+}
+.container-crane{
+  min-width:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  isolation:isolate;
+}
+.container-crane::before{content:none}
+@media(max-width:1000px){
+  .partners-crane-section .partners-section__layout{grid-template-columns:1fr;gap:var(--space-6)}
+  .partners-crane-section::before{mask-image:linear-gradient(180deg,transparent 0%,#000 35%,#000 100%)}
+}

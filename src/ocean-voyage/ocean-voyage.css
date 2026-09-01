@@ -1,4 +1,4 @@
-.ocean-voyage{position:relative;z-index:7;height:240vh;min-height:1500px;color:var(--color-white);background:#0d3b52}
+﻿.ocean-voyage{position:relative;z-index:7;height:240vh;min-height:1500px;color:var(--color-white);background:#0d3b52}
 .ocean-voyage__sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0d3b52}
 .ocean-voyage__sticky::before,.ocean-voyage__sticky::after{content:none}
 .ocean-voyage__canvas{position:absolute;z-index:1;inset:0;width:100%;height:100%;max-width:none;background:transparent}
@@ -14,3 +14,34 @@
 @media(min-width:1440px){.ocean-voyage__copy{width:calc(100% - 160px);max-width:none}.ocean-voyage__copy h2{font-size:clamp(5rem,5.4vw,6.7rem)}}
 @media(max-width:900px){.ocean-voyage{height:210vh}.ocean-voyage__copy{justify-content:flex-start;padding-top:120px}.ocean-voyage__copy h2{max-width:10em;font-size:clamp(3rem,9vw,5rem)}.ocean-voyage__copy>p:last-child{max-width:34ch}.ocean-voyage__status{right:22px;bottom:22px}}
 @media(max-width:576px){.ocean-voyage{height:190vh;min-height:1100px}.ocean-voyage__copy{padding-top:104px}.ocean-voyage__copy h2{font-size:clamp(2.65rem,12vw,3.7rem)}.ocean-voyage__copy>p:last-child{font-size:var(--font-size-base)}.ocean-voyage__status{font-size:.62rem}}
+
+
+/* ocean-continuum-layout: un solo mar y un solo barco para ambas narrativas. */
+.ocean-continuum{position:relative;isolation:isolate;background:#0d3b52}
+.ocean-continuum__sticky{position:sticky;z-index:0;top:0;width:100%;height:100vh;height:100svh;margin-bottom:-100vh;overflow:hidden;background:#0d3b52}
+.ocean-continuum__canvas{position:absolute;inset:0;width:100%;height:100%;max-width:none}
+.ocean-continuum__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(2,10,17,.58),transparent 32%,transparent 68%,rgba(2,10,17,.42))}
+.ocean-continuum .logistics-road,.ocean-continuum .ocean-voyage{position:relative;z-index:1;background:transparent}
+.ocean-continuum .logistics-road::before,.ocean-continuum .logistics-road::after{content:none}
+.ocean-continuum .ocean-voyage__sticky{background:transparent}
+.ocean-continuum .logistics-road__intro,.ocean-continuum .road-story{color:var(--color-white)}
+.ocean-continuum .logistics-road__intro h2,.ocean-continuum .road-story h3{color:var(--color-white)}
+.ocean-continuum .logistics-road__intro>p,.ocean-continuum .road-story>p:not(.eyebrow),.ocean-continuum .logistics-road__signal{color:rgba(255,255,255,.76)}
+.ocean-continuum .road-story{border-left-color:rgba(255,255,255,.18)}
+.ocean-continuum .road-story.is-active{border-left-color:var(--color-primary)}
+.ocean-continuum .ocean-voyage{margin-top:0}
+
+/* transiciones-exclusivas: nunca se muestran dos relatos al mismo tiempo. */
+.ocean-continuum .road-story{opacity:0;visibility:hidden;pointer-events:none}
+.ocean-continuum .road-story.is-active{pointer-events:auto}
+.ocean-continuum .logistics-road:not(.is-road-active) .logistics-road__intro{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.ocean-continuum .logistics-road.is-road-active .logistics-road__intro{opacity:1;visibility:visible}
+.ocean-continuum .logistics-road__intro{transition:opacity .32s ease,visibility .32s ease}
+
+/* paso-progresivo-barco: los relatos entran bajos y salen tras el paso visual. */
+.ocean-continuum .road-story{will-change:opacity,transform}
+@media(min-width:769px){
+  .ocean-continuum .road-story{margin-top:clamp(70px,10vh,110px)}
+}
+
+

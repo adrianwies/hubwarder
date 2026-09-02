@@ -1,0 +1,257 @@
+.native-control-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.pretty-select,
+.pretty-date {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  font-family: var(--font-primary);
+}
+
+.pretty-select.is-open,
+.pretty-date.is-open { z-index: 30; }
+
+.pretty-control {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 10px 44px 10px 13px;
+  border: 1px solid var(--border-color);
+  border-radius: 11px;
+  color: var(--color-heading);
+  background: var(--bg-soft);
+  font: inherit;
+  font-size: .9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition-base),box-shadow var(--transition-base),background var(--transition-base);
+}
+
+.pretty-control:hover { border-color: var(--border-brand); background: var(--color-white); }
+.pretty-control:focus-visible,.pretty-select.is-open .pretty-control,.pretty-date.is-open .pretty-control { outline: 0; border-color: var(--color-primary); background: var(--color-white); box-shadow: 0 0 0 4px rgba(242,46,120,.1); }
+.pretty-control.is-placeholder { color: var(--color-text-muted); }
+.pretty-control:disabled { color: var(--color-text-muted); background: #f2f4f8; cursor: not-allowed; }
+
+.pretty-select__trigger::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform var(--transition-base),color var(--transition-base);
+}
+.pretty-select.is-open .pretty-select__trigger::after { color: var(--color-primary); transform: translateY(2px) rotate(225deg); }
+
+.pretty-select__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  max-height: 240px;
+  overflow: auto;
+  padding: 7px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 22px 55px rgba(18,35,63,.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(.985);
+  transform-origin: top;
+  transition: opacity .18s ease,visibility .18s ease,transform .18s ease;
+}
+.pretty-select.is-open .pretty-select__menu { opacity: 1; visibility: visible; transform: none; }
+.pretty-select__option { width: 100%; min-height: 40px; display: flex; align-items: center; padding: 9px 12px; border: 0; border-radius: 9px; color: var(--color-heading); background: transparent; font: inherit; font-size: .88rem; text-align: left; cursor: pointer; }
+.pretty-select__option:hover,.pretty-select__option:focus-visible { outline: 0; color: var(--color-primary); background: var(--bg-pink-soft); }
+.pretty-select__option[aria-selected='true'] { color: #fff; background: var(--gradient-brand); font-weight: 700; }
+.pretty-select__option:disabled { color: var(--color-text-muted); cursor: default; }
+
+.pretty-date__trigger::after { content: '▣'; position: absolute; right: 12px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; color: var(--color-primary); background: rgba(242,46,120,.1); font-size: .9rem; }
+.pretty-date__panel { position: absolute; top: calc(100% + 8px); left: 0; width: min(320px,calc(100vw - 48px)); padding: 16px; border: 1px solid var(--border-color); border-radius: 16px; color: var(--color-heading); background: #fff; box-shadow: 0 24px 60px rgba(18,35,63,.2); opacity: 0; visibility: hidden; transform: translateY(-6px) scale(.985); transform-origin: top left; transition: opacity .18s ease,visibility .18s ease,transform .18s ease; }
+.pretty-date.is-open .pretty-date__panel { opacity: 1; visibility: visible; transform: none; }
+.pretty-date__nav { display: grid; grid-template-columns: 36px 1fr 36px; align-items: center; gap: 6px; margin-bottom: 14px; }
+.pretty-date__nav strong { text-align: center; text-transform: capitalize; font-size: .92rem; }
+.pretty-date__nav button,.pretty-date__footer button { border: 0; border-radius: 8px; color: var(--color-heading); background: var(--bg-light); cursor: pointer; }
+.pretty-date__nav button { width: 36px; height: 34px; }
+.pretty-date__nav button:hover,.pretty-date__footer button:hover { color: var(--color-primary); background: var(--bg-pink-soft); }
+.pretty-date__week,.pretty-date__days { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+.pretty-date__week { margin-bottom: 5px; color: var(--color-text-muted); font-size: .62rem; font-weight: 800; text-align: center; }
+.pretty-date__day { aspect-ratio: 1; border: 0; border-radius: 9px; color: var(--color-heading); background: transparent; font: inherit; font-size: .78rem; cursor: pointer; }
+.pretty-date__day:hover { color: var(--color-primary); background: var(--bg-pink-soft); }
+.pretty-date__day.is-outside { color: #b8c0cd; }
+.pretty-date__day.is-today { box-shadow: inset 0 0 0 1px var(--color-primary); }
+.pretty-date__day.is-selected { color: #fff; background: var(--gradient-brand); box-shadow: var(--shadow-brand); font-weight: 700; }
+.pretty-date__day:disabled { color: #d5dae2; cursor: not-allowed; background: transparent; box-shadow: none; }
+.pretty-date__footer { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color-light); }
+.pretty-date__footer button { padding: 7px 10px; font: inherit; font-size: .72rem; font-weight: 700; }
+
+@media(max-width:620px){.pretty-date__panel{right:0;left:auto}.pretty-control{min-height:44px}.pretty-select__menu{max-height:210px}}
+@media(prefers-reduced-motion:reduce){.pretty-control,.pretty-select__menu,.pretty-date__panel{transition:none}}
+/* Variante compacta: calendario y menús del tamaño de los demás controles. */
+.pretty-select__menu {
+  max-height: 180px;
+  padding: 5px;
+  border-radius: 11px;
+}
+
+.pretty-select__option {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 0.82rem;
+}
+
+.pretty-date__panel {
+  width: min(268px, calc(100vw - 36px));
+  padding: 11px;
+  border-radius: 13px;
+}
+
+.pretty-date__nav {
+  grid-template-columns: 30px 1fr 30px;
+  gap: 4px;
+  margin-bottom: 9px;
+}
+
+.pretty-date__nav strong {
+  font-size: 0.82rem;
+}
+
+.pretty-date__nav button {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+}
+
+.pretty-date__week,
+.pretty-date__days {
+  gap: 2px;
+}
+
+.pretty-date__week {
+  margin-bottom: 3px;
+  font-size: 0.56rem;
+}
+
+.pretty-date__day {
+  width: 100%;
+  height: 30px;
+  aspect-ratio: auto;
+  border-radius: 7px;
+  font-size: 0.72rem;
+}
+
+.pretty-date__footer {
+  margin-top: 7px;
+  padding-top: 7px;
+}
+
+.pretty-date__footer button {
+  padding: 5px 8px;
+  font-size: 0.66rem;
+}
+
+@media (max-width: 620px) {
+  .pretty-date__panel {
+    right: auto;
+    left: 0;
+    width: min(252px, calc(100vw - 36px));
+  }
+
+  .pretty-date__day {
+    height: 28px;
+  }
+}
+/* Calendario extra compacto. */
+.pretty-date__panel {
+  width: min(224px, calc(100vw - 32px));
+  padding: 8px;
+  border-radius: 11px;
+}
+
+.pretty-date__nav {
+  grid-template-columns: 26px 1fr 26px;
+  margin-bottom: 6px;
+}
+
+.pretty-date__nav strong {
+  font-size: 0.74rem;
+}
+
+.pretty-date__nav button {
+  width: 26px;
+  height: 26px;
+  font-size: 0.72rem;
+}
+
+.pretty-date__week {
+  margin-bottom: 2px;
+  font-size: 0.5rem;
+}
+
+.pretty-date__day {
+  height: 24px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+}
+
+.pretty-date__footer {
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.pretty-date__footer button {
+  padding: 4px 7px;
+  font-size: 0.6rem;
+}
+
+@media (max-width: 620px) {
+  .pretty-date__panel {
+    width: min(216px, calc(100vw - 32px));
+  }
+
+  .pretty-date__day {
+    height: 23px;
+  }
+}
+/* Calendario bajo: filas más cortas y sin altura reservada. */
+.pretty-date__panel {
+  padding-block: 7px;
+}
+
+.pretty-date__nav {
+  grid-template-columns: 24px 1fr 24px;
+  margin-bottom: 4px;
+}
+
+.pretty-date__nav button {
+  width: 24px;
+  height: 24px;
+}
+
+.pretty-date__day {
+  height: 21px;
+  font-size: 0.62rem;
+}
+
+.pretty-date__footer {
+  margin-top: 4px;
+  padding-top: 4px;
+}
+
+@media (max-width: 620px) {
+  .pretty-date__day {
+    height: 20px;
+  }
+}

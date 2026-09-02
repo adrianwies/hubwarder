@@ -41,9 +41,12 @@ function initSceneWhenNear(scene, element, rootMargin = '120% 0px') {
   return { start };
 }
 
-initSceneWhenNear(partnersRoad, partnersRoad.section, '100% 0px');
-
 await runLoader(Promise.all([preloadCritical(), globe.init(), ...oceanVoyages.map(scene => scene.init())]));
+
+// La grúa depende de medidas reales de toda la página. Se empieza a observar
+// solo después de retirar el loader para que ScrollTrigger no calcule su
+// progreso contra un layout que todavía está cambiando.
+initSceneWhenNear(partnersRoad, partnersRoad.section, '100% 0px');
 const animations = new GlobeAnimations(globe).init();
 const homeExperience = new HomeExperience().init();
 

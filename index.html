@@ -9,6 +9,16 @@
       content="HUB-WARDER ofrece soluciones integrales de importación, logística y asesoría aduanera para empresas en Perú."
     />
     <title>HUB-WARDER — Importación inteligente al Perú</title>
+    <style>
+      /* Evita que la pose sin inicializar de la grúa llegue al primer paint. */
+      .partners-crane-section.is-crane-pending .container-crane__rig,
+      .partners-crane-section.is-crane-pending .container-crane__cargo--image,
+      .partners-crane-section.is-crane-pending .container-crane__yard,
+      .partners-crane-section.is-crane-pending .container-crane__status {
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+    </style>
   </head>
   <body>
     <div id="loader" class="loader" role="status" aria-live="polite">

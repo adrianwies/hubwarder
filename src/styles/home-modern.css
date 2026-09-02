@@ -1747,20 +1747,24 @@
   .partners-crane-section .partners-section__layout{grid-template-columns:minmax(420px,.7fr) minmax(0,1.3fr)}
   .partners-crane-section .container-crane{min-height:min(780px,calc(100svh - var(--header-height) - 80px))}
 }
-/* crane-initialization-guard: prevents the raw CSS pose flashing on reload. */
+/* crane-initialization-guard: keep the complete scene hidden until GSAP has
+   measured it and applied its real starting pose. */
 .partners-crane-section.is-crane-pending .container-crane__rig,
 .partners-crane-section.is-crane-pending .container-crane__cargo--image,
+.partners-crane-section.is-crane-pending .container-crane__yard,
 .partners-crane-section.is-crane-pending .container-crane__status{
   opacity:0;
   visibility:hidden;
 }
 .partners-crane-section.is-crane-ready .container-crane__rig,
-.partners-crane-section.is-crane-ready .container-crane__cargo--image{
+.partners-crane-section.is-crane-ready .container-crane__cargo--image,
+.partners-crane-section.is-crane-ready .container-crane__yard{
   opacity:1;
   visibility:visible;
   transition:opacity .28s ease;
 }
 @media(prefers-reduced-motion:reduce){
   .partners-crane-section.is-crane-ready .container-crane__rig,
-  .partners-crane-section.is-crane-ready .container-crane__cargo--image{transition:none}
+  .partners-crane-section.is-crane-ready .container-crane__cargo--image,
+  .partners-crane-section.is-crane-ready .container-crane__yard{transition:none}
 }

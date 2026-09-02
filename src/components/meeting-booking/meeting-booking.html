@@ -1,0 +1,163 @@
+<section class="meeting-booking">
+  <div class="meeting-booking__container">
+
+
+    <div class="meeting-booking__header">
+      <p class="meeting-booking__eyebrow">
+        Reuniones
+      </p>
+
+
+      <h2 class="meeting-booking__title">
+        Agenda una reunión
+      </h2>
+
+
+      <p class="meeting-booking__description">
+        Selecciona una fecha y horario disponible para conversar
+        con nuestro equipo.
+      </p>
+    </div>
+
+
+    <form class="meeting-booking__form" data-meeting-form>
+
+
+      <div class="meeting-booking__field">
+        <label for="meeting-name">
+          Nombre y apellido
+        </label>
+
+
+        <input
+          id="meeting-name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+        >
+      </div>
+
+
+      <div class="meeting-booking__field">
+        <label for="meeting-company">
+          Empresa
+        </label>
+
+
+        <input
+          id="meeting-company"
+          name="company"
+          type="text"
+          autocomplete="organization"
+          required
+        >
+      </div>
+
+
+      <div class="meeting-booking__field">
+        <label for="meeting-email">
+          Correo electrónico
+        </label>
+
+
+        <input
+          id="meeting-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+
+      <div class="meeting-booking__field">
+        <label for="meeting-phone">
+          Teléfono
+        </label>
+
+
+        <input
+          id="meeting-phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          required
+        >
+      </div>
+
+
+      <div class="meeting-booking__field">
+        <label for="meeting-date">
+          Fecha
+        </label>
+
+
+        <input
+          id="meeting-date"
+          name="date"
+          type="date"
+          data-meeting-date
+          required
+        >
+      </div>
+
+
+      <div class="meeting-booking__field">
+        <label for="meeting-time">
+          Horario
+        </label>
+
+
+        <select
+          id="meeting-time"
+          name="time"
+          data-meeting-time
+          disabled
+          required
+        >
+          <option value="">
+            Primero selecciona una fecha
+          </option>
+        </select>
+      </div>
+
+
+      <div class="meeting-booking__field meeting-booking__field--full">
+        <label for="meeting-reason">
+          ¿De qué te gustaría conversar?
+        </label>
+
+
+        <textarea
+          id="meeting-reason"
+          name="reason"
+          required
+        ></textarea>
+      </div>
+
+
+      <button
+        class="meeting-booking__button"
+        type="submit"
+      >
+        Agendar reunión
+      </button>
+
+
+      <p
+        class="meeting-booking__message"
+        data-meeting-message
+        hidden
+      ></p>
+
+
+    </form>
+
+
+  </div>
+</section>
+
+
+
+

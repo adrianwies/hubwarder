@@ -14,7 +14,12 @@ export class HorizontalTruckScene {
     if(!this.stage||!this.trolley||!this.cargo)return this;
     await Promise.all([...this.stage.querySelectorAll('img')].map(image=>image.decode().catch(()=>{})));
     this.buildTimeline();
+    // Espera dos paints con el layout definitivo antes de mostrar la escena.
+    // Así nunca se alcanza a ver un progreso calculado antes de retirar el loader.
+    await new Promise(requestAnimationFrame);
     ScrollTrigger.refresh();
+    await new Promise(requestAnimationFrame);
+    this.timeline?.scrollTrigger?.update();
     this.section.classList.remove('is-crane-pending');
     this.section.classList.add('is-crane-ready');
     this.resizeObserver=new ResizeObserver(()=>this.refresh());

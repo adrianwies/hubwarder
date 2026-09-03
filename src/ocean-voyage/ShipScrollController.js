@@ -1,9 +1,9 @@
-﻿import gsap from 'gsap';
+import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export class ShipScrollController{
-  constructor(section,shipRoot,wake){this.section=section;this.shipRoot=shipRoot;this.wake=wake;this.mobile=matchMedia('(max-width: 768px)').matches;this.state={progress:0};this.previousProgress=0;this.motionIntensity=0;this.startZ=-12;this.endZ=12;}
+  constructor(section,shipRoot,wake){this.section=section;this.shipRoot=shipRoot;this.wake=wake;this.mobile=matchMedia('(max-width: 768px)').matches;this.state={progress:0};this.previousProgress=0;this.motionIntensity=0;this.startZ=-12;this.endZ=12;this.horizontalOffset=0;}
   init(){
     this.shipMaterial=this.shipRoot.getObjectByName('CargoShipImage')?.material;
     if(this.shipMaterial)this.shipMaterial.opacity=0;
@@ -11,9 +11,10 @@ export class ShipScrollController{
 
     const road=this.section.querySelector('.logistics-road');
     const cards=road?gsap.utils.toArray(road.querySelectorAll('[data-road-segment]')):[];
+    const steps=road?gsap.utils.toArray(road.querySelectorAll('.logistics-road__steps a')):[];
     this.cardTweens=[];
     if(road&&cards.length){
-      gsap.set(cards,{autoAlpha:0,y:42});
+      gsap.set(cards,{autoAlpha:0,y:42,x:this.mobile?28:0});
       const setRoadActive=active=>road.classList.toggle('is-road-active',active);
       this.roadTrigger=ScrollTrigger.create({
         trigger:road,
@@ -36,9 +37,9 @@ export class ShipScrollController{
             scrub:.55
           }
         })
-          .fromTo(card,{autoAlpha:0,y:42},{autoAlpha:1,y:0,duration:.28,ease:'none'})
+          .fromTo(card,{autoAlpha:0,y:42,x:this.mobile?28:0},{autoAlpha:1,y:0,x:0,duration:.28,ease:'none'})
           .to(card,{autoAlpha:1,y:0,duration:.44,ease:'none'})
-          .to(card,{autoAlpha:0,y:-38,duration:.28,ease:'none'});
+          .to(card,{autoAlpha:0,y:-38,x:this.mobile?-18:0,duration:.28,ease:'none'});
         this.cardTweens.push(tween);
       });
     }
@@ -69,8 +70,9 @@ export class ShipScrollController{
     }
     this.setScrollProgress(0);return this;
   }
+  setHorizontalOffset(offset){this.horizontalOffset=offset;this.setScrollProgress(this.state.progress);}
   setTravelBounds(startZ,endZ){this.startZ=startZ;this.endZ=endZ;this.centerTravelProgress=Math.max(0,Math.min(1,(0-startZ)/(endZ-startZ)));this.setScrollProgress(this.state.progress);}
-  setScrollProgress(progress){const visualProgress=progress;const reveal=Math.max(0,Math.min(1,visualProgress/.055));const revealEase=reveal*reveal*(3-2*reveal);if(this.shipMaterial)this.shipMaterial.opacity=revealEase;this.wake?.setVisibility(revealEase);const speed=Math.min(1,Math.abs(progress-this.previousProgress)*32);this.motionIntensity+=(speed-this.motionIntensity)*.22;this.previousProgress=progress;const center=this.centerTravelProgress??.18;let travelProgress;if(visualProgress<.12){const entry=visualProgress/.12;const easedEntry=entry*entry*(3-2*entry);travelProgress=gsap.utils.interpolate(0,center,easedEntry);}else{const x=Math.max(0,Math.min(1,(visualProgress-.12)/.88));const delayed=Math.pow(x,1.65);const natural=delayed*delayed*(3-2*delayed);travelProgress=gsap.utils.interpolate(center,1,natural);}this.shipRoot.position.set(0,0,gsap.utils.interpolate(this.startZ,this.endZ,travelProgress));this.shipRoot.rotation.y=(visualProgress-.5)*.018;}
+  setScrollProgress(progress){const visualProgress=progress;const reveal=Math.max(0,Math.min(1,visualProgress/.055));const revealEase=reveal*reveal*(3-2*reveal);if(this.shipMaterial)this.shipMaterial.opacity=revealEase;this.wake?.setVisibility(revealEase);const speed=Math.min(1,Math.abs(progress-this.previousProgress)*32);this.motionIntensity+=(speed-this.motionIntensity)*.22;this.previousProgress=progress;const center=this.centerTravelProgress??.18;let travelProgress;if(visualProgress<.12){const entry=visualProgress/.12;const easedEntry=entry*entry*(3-2*entry);travelProgress=gsap.utils.interpolate(0,center,easedEntry);}else{const x=Math.max(0,Math.min(1,(visualProgress-.12)/.88));const delayed=Math.pow(x,1.65);const natural=delayed*delayed*(3-2*delayed);travelProgress=gsap.utils.interpolate(center,1,natural);}this.shipRoot.position.set(this.horizontalOffset,0,gsap.utils.interpolate(this.startZ,this.endZ,travelProgress));this.shipRoot.rotation.y=(visualProgress-.5)*.018;}
   update(delta){this.motionIntensity*=Math.exp(-2.4*delta);return this.motionIntensity;}
   destroy(){this.tween?.scrollTrigger?.kill();this.tween?.kill();this.roadTrigger?.kill();this.cardTweens?.forEach(tween=>{tween.scrollTrigger?.kill();tween.kill();});this.storyTimeline?.scrollTrigger?.kill();this.storyTimeline?.kill();}
 }

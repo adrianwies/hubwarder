@@ -1,4 +1,4 @@
-﻿.ocean-voyage{position:relative;z-index:7;height:240vh;min-height:1500px;color:var(--color-white);background:#071f2d}
+.ocean-voyage{position:relative;z-index:7;height:240vh;min-height:1500px;color:var(--color-white);background:#071f2d}
 .ocean-voyage__sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#071f2d}
 .ocean-voyage__sticky::before,.ocean-voyage__sticky::after{content:none}
 .ocean-voyage__canvas{position:absolute;z-index:1;inset:0;width:100%;height:100%;max-width:none;background:transparent}
@@ -96,4 +96,55 @@
   .ocean-continuum .road-story__icon{margin-bottom:14px}
   .ocean-continuum .road-story h3{max-width:18ch;margin-bottom:12px;font-size:clamp(1.45rem,6.2vw,2rem)}
   .ocean-continuum .road-story>p:not(.eyebrow){font-size:clamp(.86rem,3.5vw,1rem);line-height:1.55}
+}
+
+/* Cabecera y progreso por encima del canvas. */
+.ocean-continuum .logistics-road.is-road-active{z-index:20}
+.ocean-continuum .logistics-road__content{z-index:21}
+.ocean-continuum .logistics-road.is-road-active .logistics-road__intro,.ocean-continuum .logistics-road.is-road-intro-complete .logistics-road__intro{position:fixed;z-index:50;top:calc(var(--header-height) + clamp(12px,2vh,24px));left:max(var(--container-padding),calc((100vw - var(--container-width))/2));width:min(430px,calc(100vw - 40px));margin:0;padding:clamp(18px,2.2vw,28px);opacity:1!important;visibility:visible!important;transform:none!important;color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:20px;background:linear-gradient(145deg,rgba(3,15,25,.92),rgba(8,35,49,.78));box-shadow:0 18px 50px rgba(0,0,0,.28);backdrop-filter:blur(14px);pointer-events:auto!important}
+.ocean-continuum .logistics-road__brand{display:none}
+.logistics-road__steps{position:fixed;z-index:52;bottom:max(22px,env(safe-area-inset-bottom));left:50%;display:flex;gap:12px;align-items:center;padding:10px 14px;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(3,15,25,.74);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transform:translateX(-50%) translateY(10px);transition:opacity .25s ease,visibility .25s ease,transform .25s ease;pointer-events:none}
+.logistics-road.is-road-active .logistics-road__steps{opacity:1;visibility:visible;transform:translateX(-50%);pointer-events:auto}
+.logistics-road__steps a{display:block;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.38);transition:width .2s ease,background .2s ease,box-shadow .2s ease}
+.logistics-road__steps a.is-active{width:24px;background:var(--color-primary);box-shadow:0 0 0 4px rgba(242,46,120,.14)}
+/* Móvil: barco a la izquierda y narrativa transparente a la derecha. */
+@media(max-width:768px){
+.ocean-continuum .logistics-road.is-road-active .logistics-road__intro,.ocean-continuum .logistics-road.is-road-intro-complete .logistics-road__intro{top:calc(var(--header-height) + 14px);right:12px;left:auto;width:52vw;max-width:310px;padding:0;transform:none!important;text-align:left;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.ocean-continuum .logistics-road__intro::before{margin-bottom:10px}.ocean-continuum .logistics-road__intro h2{font-size:clamp(1.28rem,5.8vw,2rem);line-height:1.02}.ocean-continuum .logistics-road__intro>p:last-of-type{margin-top:10px;padding-left:10px;font-size:clamp(.68rem,2.7vw,.84rem)}.ocean-continuum .logistics-road__signal{margin-top:10px;font-size:.58rem}
+.ocean-continuum .road-story,.ocean-continuum .road-story--right{right:12px;left:auto;width:52vw;max-width:310px;margin:0;padding:0 0 0 12px;border:0;border-left:2px solid rgba(255,106,152,.78);border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.ocean-continuum .road-story__icon{margin-bottom:9px;font-size:27px}.ocean-continuum .road-story .eyebrow{margin-bottom:8px;font-size:.6rem}.ocean-continuum .road-story h3{max-width:none;margin-bottom:8px;font-size:clamp(1.18rem,5.2vw,1.7rem);line-height:1.03}.ocean-continuum .road-story>p:not(.eyebrow){font-size:clamp(.7rem,2.75vw,.86rem);line-height:1.42}
+.ocean-voyage__copy{align-items:flex-end;padding-right:12px;padding-left:46vw;text-align:left}.ocean-voyage__lead{width:100%;max-width:310px;text-shadow:0 2px 16px rgba(0,0,0,.9)}.ocean-voyage__copy h2{font-size:clamp(1.45rem,6vw,2.25rem)}.ocean-voyage__copy>p:last-child,.ocean-voyage__lead>p:last-child{font-size:clamp(.7rem,2.8vw,.86rem)}
+.ocean-voyage__chapters{right:12px;left:auto;width:52vw;max-width:310px;text-shadow:0 2px 16px rgba(0,0,0,.9)}.ocean-voyage__chapters h3{font-size:clamp(1.35rem,5.8vw,2rem)}.ocean-voyage__chapters p{font-size:clamp(.7rem,2.8vw,.86rem);line-height:1.45}
+}
+/* Sistema narrativo unificado con tokens root. */
+.ocean-continuum .logistics-road.is-road-active .logistics-road__intro,
+.ocean-continuum .logistics-road.is-road-intro-complete .logistics-road__intro{
+  position:absolute;
+  top:clamp(28px,5vh,64px);
+  bottom:auto;
+  opacity:1!important;
+  visibility:visible!important;
+  color:var(--color-white);
+  border:0;
+  border-left:2px solid var(--color-primary);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  backdrop-filter:none;
+  text-shadow:none;
+}
+.ocean-continuum :is(.logistics-road__intro,.road-story,.ocean-voyage__lead,.ocean-voyage__chapters article) .eyebrow,
+.ocean-continuum .ocean-voyage__chapters span{color:var(--color-primary-light)}
+.ocean-continuum :is(.logistics-road__intro,.road-story,.ocean-voyage__lead,.ocean-voyage__chapters article) :is(h2,h3){color:var(--color-white)}
+.ocean-continuum :is(.logistics-road__intro,.road-story,.ocean-voyage__lead,.ocean-voyage__chapters article) :is(h2,h3) em{color:transparent;background:var(--gradient-brand);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ocean-continuum :is(.logistics-road__intro,.road-story,.ocean-voyage__lead,.ocean-voyage__chapters article)>p:not(.eyebrow){color:color-mix(in srgb,var(--color-white) 76%,transparent)}
+.ocean-continuum .road-story,.ocean-continuum .road-story--right{border:0;border-left:2px solid var(--border-brand);border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;text-shadow:none}
+.ocean-continuum .road-story.is-active{border-left-color:var(--color-primary)}
+.logistics-road__steps{border-color:var(--border-brand);background:color-mix(in srgb,var(--bg-dark) 82%,transparent);box-shadow:var(--shadow-md)}
+.logistics-road__steps a{background:color-mix(in srgb,var(--color-white) 38%,transparent)}
+.logistics-road__steps a.is-active{background:var(--color-primary);box-shadow:0 0 0 4px var(--border-brand)}
+@media(max-width:768px){
+  .ocean-continuum .logistics-road.is-road-active .logistics-road__intro,
+  .ocean-continuum .logistics-road.is-road-intro-complete .logistics-road__intro{position:absolute;top:clamp(24px,4vh,42px);right:12px;left:auto;width:52vw;max-width:310px;padding:0 0 0 12px;transform:none!important}
+  .ocean-continuum :is(.logistics-road__intro,.road-story,.ocean-voyage__lead,.ocean-voyage__chapters article){text-shadow:none}
 }

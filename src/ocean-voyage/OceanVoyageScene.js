@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 import { OceanSurface, getWaveHeight } from './OceanSurface.js';
 import { ShipBuoyancy } from './ShipBuoyancy.js';
 import { ShipScrollController } from './ShipScrollController.js';
@@ -127,6 +127,8 @@ export class OceanVoyageScene {
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, this.mobile ? 1 : 1.25));
     const viewHeight = 2 * this.camera.position.y * Math.tan(THREE.MathUtils.degToRad(this.camera.fov * .5));
     const shipHalf = (this.shipDimensions?.length ?? 8.8) * .5;
+    const viewWidth = viewHeight * this.camera.aspect;
+    this.scrollController?.setHorizontalOffset(this.mobile ? -viewWidth * .24 : 0);
     this.scrollController?.setTravelBounds(this.mobile ? -viewHeight * .1 : -viewHeight * .34, viewHeight * .58 + shipHalf);
   }
 

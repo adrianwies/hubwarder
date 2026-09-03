@@ -23,16 +23,13 @@ export const footerMarkup = () => `
 
       <div class="hub-footer__column hub-footer__contact">
         <small>Contacto</small>
-        <a href="mailto:operaciones@hubwarder.com">operaciones@hubwarder.com</a>
+        <a href="mailto:informes@hubwarder.com.pe">informes@hubwarder.com.pe</a>
         <a href="/contacto/">Iniciar una conversación <b>↗</b></a>
       </div>
 
       <div class="hub-footer__column hub-footer__social">
         <small>Síguenos</small>
         <div class="hub-footer__social-icons" aria-label="Redes sociales">
-          <span aria-label="Facebook" role="img">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v2H6v4h3v7h4v-7h3.3l.7-4h-4V9c0-.7.3-1 1-1Z"/></svg>
-          </span>
           <span aria-label="Instagram" role="img">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
           </span>

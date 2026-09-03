@@ -189,3 +189,13 @@
   margin-top:var(--space-8);
   line-height:var(--line-height-relaxed);
 }
+
+/* En móvil, reserva el primer tramo para la introducción antes del barco y las tarjetas. */
+@media(max-width:768px){
+  .logistics-road{--road-section-height:430vh}
+  .road-story[data-road-segment="01"]{top:24%}
+  .road-story[data-road-segment="02"]{top:41%}
+  .road-story[data-road-segment="03"]{top:58%}
+  .road-story[data-road-segment="04"]{top:75%}
+  .road-story[data-road-segment="05"]{top:92%}
+}

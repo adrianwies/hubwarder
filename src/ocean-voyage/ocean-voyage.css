@@ -17,9 +17,9 @@
 
 
 /* ocean-continuum-layout: un solo mar y un solo barco para ambas narrativas. */
-.ocean-continuum{position:relative;isolation:isolate;background:#0d3b52}
-.ocean-continuum__sticky{position:sticky;z-index:0;top:0;width:100%;height:100vh;height:100svh;margin-bottom:-100vh;overflow:hidden;background:#0d3b52}
-.ocean-continuum__canvas{position:absolute;inset:0;width:100%;height:100%;max-width:none}
+.ocean-continuum{position:relative;width:100%;max-width:none;overflow-x:clip;isolation:isolate;background:#0d3b52}
+.ocean-continuum__sticky{position:sticky;z-index:0;top:0;right:0;left:0;width:100vw;min-width:100%;max-width:none;height:100vh;height:100svh;margin-bottom:-100vh;overflow:hidden;background:#0d3b52}
+.ocean-continuum__canvas{position:absolute;inset:0;width:100%!important;min-width:100%;height:100%!important;max-width:none}
 .ocean-continuum__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(2,10,17,.58),transparent 32%,transparent 68%,rgba(2,10,17,.42))}
 .ocean-continuum .logistics-road,.ocean-continuum .ocean-voyage{position:relative;z-index:1;background:transparent}
 .ocean-continuum .logistics-road::before,.ocean-continuum .logistics-road::after{content:none}
@@ -29,6 +29,7 @@
 .ocean-continuum .logistics-road__intro>p,.ocean-continuum .road-story>p:not(.eyebrow),.ocean-continuum .logistics-road__signal{color:rgba(255,255,255,.76)}
 .ocean-continuum .road-story{border-left-color:rgba(255,255,255,.18)}
 .ocean-continuum .road-story.is-active{border-left-color:var(--color-primary)}
+.ocean-continuum .road-story__number{position:relative;z-index:2;color:#ffd4e4;opacity:1;-webkit-text-stroke:1px rgba(242,46,120,.72);text-shadow:0 2px 5px rgba(2,10,17,.82),0 0 18px rgba(255,255,255,.24)}
 .ocean-continuum .ocean-voyage{margin-top:0}
 
 /* transiciones-exclusivas: nunca se muestran dos relatos al mismo tiempo. */
@@ -43,5 +44,6 @@
 @media(min-width:769px){
   .ocean-continuum .road-story{margin-top:clamp(70px,10vh,110px)}
 }
-
-
+@supports(width:100dvw){
+  .ocean-continuum__sticky{width:100dvw}
+}

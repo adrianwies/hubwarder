@@ -45,7 +45,7 @@ function mountMobileMenu(header){
   panel.querySelectorAll('[data-mobile-menu-close]').forEach(node=>node.addEventListener('click',()=>setOpen(false)));
   panel.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setOpen(false)));
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&panel.classList.contains('is-open'))setOpen(false)});
-  matchMedia('(min-width:769px)').addEventListener('change',event=>{if(event.matches)setOpen(false)});
+  matchMedia('(min-width:1101px)').addEventListener('change',event=>{if(event.matches)setOpen(false)});
 }
 
 const mount=()=>document.querySelectorAll('.site-header').forEach(mountMobileMenu);

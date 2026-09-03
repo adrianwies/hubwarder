@@ -8,7 +8,6 @@ export class HorizontalTruckScene {
     this.stage=section?.querySelector('[data-container-crane]');
     this.trolley=section?.querySelector('[data-crane-trolley]');
     this.cargo=section?.querySelector('[data-crane-cargo]');
-    this.status=section?.querySelector('[data-crane-status]');
   }
   async init(){
     if(!this.stage||!this.trolley||!this.cargo)return this;
@@ -56,11 +55,20 @@ export class HorizontalTruckScene {
   buildTimeline(){
     this.measure();
     this.timeline=gsap.timeline({
-      scrollTrigger:{trigger:this.section,start:'top top',end:'bottom bottom',scrub:.8,invalidateOnRefresh:true}
+      scrollTrigger:{
+        trigger:this.section,
+        start:'top top',
+        end:'bottom bottom',
+        scrub:.8,
+        invalidateOnRefresh:true,
+        onEnter:()=>this.section.classList.add('is-crane-started'),
+        onEnterBack:()=>this.section.classList.add('is-crane-started'),
+        onLeaveBack:()=>this.section.classList.remove('is-crane-started'),
+        onRefresh:self=>this.section.classList.toggle('is-crane-started',self.scroll()>=self.start)
+      }
     });
     this.timeline
-      .set(this.status,{autoAlpha:0},0)
-      .set([this.trolley,this.cargo],{xPercent:-50,x:0,y:()=>this.startY},0)
+      .set([this.trolley,this.cargo],{xPercent:-50,x:0,y:()=>this.startY,autoAlpha:1},0)
       .to([this.trolley,this.cargo],{x:-5,y:()=>this.startY+(this.dropY-this.startY)*.28,duration:.14,ease:'sine.inOut'},0)
       .to([this.trolley,this.cargo],{x:4,y:()=>this.startY+(this.dropY-this.startY)*.56,duration:.14,ease:'sine.inOut'},.14)
       .to([this.trolley,this.cargo],{x:-2,y:()=>this.startY+(this.dropY-this.startY)*.80,duration:.13,ease:'sine.inOut'},.28)
@@ -69,9 +77,8 @@ export class HorizontalTruckScene {
       .to(this.stage,{'--crane-glow':1,duration:.07},.5)
       .to(this.trolley,{y:()=>this.dropY-12,duration:.06,ease:'power2.out'},.54)
       .set(this.cargo,{zIndex:1},.57)
-      .set(this.status,{textContent:'Contenedor entregado'},.57)
       .to(this.trolley,{y:()=>this.startY,duration:.35,ease:'power1.inOut'},.62)
-      .to(this.status,{autoAlpha:1,duration:.08},.9);
+      ;
     this.timeline.progress(0);
   }
   refresh(){

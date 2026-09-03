@@ -68,8 +68,13 @@ export class OceanVoyageScene {
     this.ocean.update(0);
     this.buoyancy.update(0, this.ocean.time, 0);
     this.renderer.render(this.scene, this.camera);
-    this.resizeObserver = new ResizeObserver(() => this.resize());
+    this.resizeObserver = new ResizeObserver(() => this.queueResize());
+    this.resizeObserver.observe(this.section);
     this.resizeObserver.observe(this.canvas);
+    this.handleViewportResize = () => this.queueResize();
+    window.addEventListener('resize', this.handleViewportResize, { passive:true });
+    window.addEventListener('orientationchange', this.handleViewportResize, { passive:true });
+    window.visualViewport?.addEventListener('resize', this.handleViewportResize, { passive:true });
     this.intersectionObserver = new IntersectionObserver(([entry]) => {
       this.setActive(entry.isIntersecting);
     }, { rootMargin: '0px', threshold: .01 });
@@ -102,9 +107,18 @@ export class OceanVoyageScene {
     return mesh;
   }
 
+  queueResize() {
+    if (this.resizeFrame) return;
+    this.resizeFrame = requestAnimationFrame(() => {
+      this.resizeFrame = 0;
+      this.resize();
+    });
+  }
   resize() {
     const rect = this.canvas.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
+    this.mobile = rect.width <= 700;
+    if (this.scrollController) this.scrollController.mobile = rect.width <= 768;
     this.camera.aspect = rect.width / rect.height;
     this.camera.fov = rect.width < 700 ? 40 : 31;
     this.camera.position.y = rect.width < 700 ? 27 : 25;
@@ -144,6 +158,10 @@ export class OceanVoyageScene {
     cancelAnimationFrame(this.raf);
     this.scrollController?.destroy();
     this.resizeObserver?.disconnect();
+    if (this.resizeFrame) cancelAnimationFrame(this.resizeFrame);
+    window.removeEventListener('resize', this.handleViewportResize);
+    window.removeEventListener('orientationchange', this.handleViewportResize);
+    window.visualViewport?.removeEventListener('resize', this.handleViewportResize);
     this.intersectionObserver?.disconnect();
     this.ocean?.dispose();
     this.wake?.dispose();

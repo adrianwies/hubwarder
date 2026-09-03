@@ -32,7 +32,7 @@ export class OceanVoyageScene {
       antialias: true,
       powerPreference: 'high-performance',
     });
-    this.renderer.setClearColor(0x0d3b52, 1);
+    this.renderer.setClearColor(0x071f2d, 1);
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, this.mobile ? 1 : 1.25));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -56,7 +56,7 @@ export class OceanVoyageScene {
     // Evita la compilaciÃ³n del shader en el primer frame visible.
     await this.renderer.compileAsync(this.scene, this.camera).catch(() => {});
 
-    this.scrollController = new ShipScrollController(this.section, this.shipRoot).init();
+    this.scrollController = new ShipScrollController(this.section, this.shipRoot, this.wake).init();
     this.buoyancy = new ShipBuoyancy({
       floatRoot: this.floatRoot,
       anchors: {},
@@ -71,7 +71,7 @@ export class OceanVoyageScene {
     this.resizeObserver = new ResizeObserver(() => this.queueResize());
     this.resizeObserver.observe(this.section);
     this.resizeObserver.observe(this.canvas);
-    this.handleViewportResize = () => this.queueResize();
+    this.handleViewportResize = () => this.resize();
     window.addEventListener('resize', this.handleViewportResize, { passive:true });
     window.addEventListener('orientationchange', this.handleViewportResize, { passive:true });
     window.visualViewport?.addEventListener('resize', this.handleViewportResize, { passive:true });
@@ -127,7 +127,7 @@ export class OceanVoyageScene {
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, this.mobile ? 1 : 1.25));
     const viewHeight = 2 * this.camera.position.y * Math.tan(THREE.MathUtils.degToRad(this.camera.fov * .5));
     const shipHalf = (this.shipDimensions?.length ?? 8.8) * .5;
-    this.scrollController?.setTravelBounds(-viewHeight * .34, viewHeight * .58 + shipHalf);
+    this.scrollController?.setTravelBounds(this.mobile ? -viewHeight * .1 : -viewHeight * .34, viewHeight * .58 + shipHalf);
   }
 
   setActive(active) {

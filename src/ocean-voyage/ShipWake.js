@@ -43,6 +43,7 @@ const fragmentShader = /* glsl */ `
   uniform float uWhiteThreshold;
   uniform float uOverlayOpacity;
   uniform float uOverlayWidth;
+  uniform float uVisibility;
   uniform vec2 uOverlayOffset;
   varying vec2 vUv;
 
@@ -75,7 +76,7 @@ const fragmentShader = /* glsl */ `
     overlayAlpha *= smoothstep(.075, .18, overlayLuminance);
     baseAlpha *= baseLuminance * uBaseOpacity * uIntensity;
     overlayAlpha *= overlayLuminance * uOverlayOpacity * uIntensity;
-    float alpha = max(baseAlpha, overlayAlpha);
+    float alpha = max(baseAlpha, overlayAlpha) * uVisibility;
     float luminance = max(baseLuminance, overlayLuminance);
     if (alpha < .006) discard;
     gl_FragColor = vec4(uFoamColor * mix(.8, 1.0, luminance), alpha);
@@ -130,6 +131,7 @@ export class ShipWake {
       uWhiteThreshold: { value: this.config.whiteThreshold },
       uOverlayOpacity: { value: this.config.overlayOpacity },
       uOverlayWidth: { value: this.config.overlayWidth },
+      uVisibility: { value: 0 },
       uOverlayOffset: {
         value: new THREE.Vector2(this.config.overlayOffsetX, this.config.overlayOffsetY),
       },
@@ -159,6 +161,10 @@ export class ShipWake {
     // El elemento HTML continúa reproduciéndose sin depender de RAF, GSAP o scroll.
     if (this.config.baseOpacity > .001) this.video.load();
     this.overlayVideo.load();
+  }
+
+  setVisibility(value) {
+    this.uniforms.uVisibility.value = THREE.MathUtils.clamp(value, 0, 1);
   }
 
   setActive(active) {

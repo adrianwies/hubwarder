@@ -22,7 +22,9 @@ export class ShipScrollController{
         onEnter:()=>setRoadActive(true),
         onEnterBack:()=>setRoadActive(true),
         onLeave:()=>setRoadActive(false),
-        onLeaveBack:()=>setRoadActive(false)
+        onLeaveBack:()=>{setRoadActive(false);road.classList.remove('is-road-intro-complete')},
+        onUpdate:self=>road.classList.toggle('is-road-intro-complete',this.mobile&&self.progress>.14),
+        onRefresh:self=>road.classList.toggle('is-road-intro-complete',this.mobile&&self.progress>.14)
       });
       cards.forEach(card=>{
         const tween=gsap.timeline({

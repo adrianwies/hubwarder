@@ -193,9 +193,9 @@
 /* En móvil, reserva el primer tramo para la introducción antes del barco y las tarjetas. */
 @media(max-width:768px){
   .logistics-road{--road-section-height:430vh}
-  .road-story[data-road-segment="01"]{top:24%}
-  .road-story[data-road-segment="02"]{top:41%}
-  .road-story[data-road-segment="03"]{top:58%}
-  .road-story[data-road-segment="04"]{top:75%}
-  .road-story[data-road-segment="05"]{top:92%}
+  .road-story[data-road-segment="01"]{top:32%}
+  .road-story[data-road-segment="02"]{top:48%}
+  .road-story[data-road-segment="03"]{top:64%}
+  .road-story[data-road-segment="04"]{top:80%}
+  .road-story[data-road-segment="05"]{top:96%}
 }

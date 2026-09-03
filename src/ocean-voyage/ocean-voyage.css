@@ -47,3 +47,46 @@
 @supports(width:100dvw){
   .ocean-continuum__sticky{width:100dvw}
 }
+
+/* Narrativa móvil: introducción y tarjetas nunca comparten el mismo plano. */
+@media(max-width:768px){
+  .ocean-continuum .logistics-road__intro{
+    right:20px;
+    left:20px;
+    width:auto;
+    max-width:520px;
+    margin-inline:auto;
+    padding:clamp(20px,5vw,28px);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:22px;
+    background:linear-gradient(145deg,rgba(5,19,30,.9),rgba(8,35,49,.72));
+    box-shadow:0 22px 60px rgba(0,0,0,.28);
+    backdrop-filter:blur(14px);
+    transition:opacity .3s ease,visibility .3s ease,transform .3s ease;
+  }
+  .ocean-continuum .logistics-road.is-road-intro-complete .logistics-road__intro{
+    opacity:0!important;
+    visibility:hidden!important;
+    transform:translateY(-24px)!important;
+    pointer-events:none!important;
+  }
+  .ocean-continuum .road-story,
+  .ocean-continuum .road-story--right{
+    right:20px;
+    left:20px;
+    width:auto;
+    max-width:520px;
+    margin-inline:auto;
+    padding:clamp(18px,4.5vw,24px);
+    border:1px solid rgba(255,255,255,.13);
+    border-left:3px solid rgba(255,106,152,.72);
+    border-radius:18px;
+    background:linear-gradient(145deg,rgba(4,18,29,.88),rgba(8,37,51,.68));
+    box-shadow:0 18px 45px rgba(0,0,0,.25);
+    backdrop-filter:blur(12px);
+  }
+  .ocean-continuum .road-story.is-active{border-left-color:var(--color-primary-light)}
+  .ocean-continuum .road-story__icon{margin-bottom:14px}
+  .ocean-continuum .road-story h3{max-width:18ch;margin-bottom:12px;font-size:clamp(1.45rem,6.2vw,2rem)}
+  .ocean-continuum .road-story>p:not(.eyebrow){font-size:clamp(.86rem,3.5vw,1rem);line-height:1.55}
+}

@@ -502,3 +502,41 @@ main.about-page > .about-cta > .container > h2{
   .about-page .method-stage__steps{grid-template-columns:1fr}
 }
 @media (min-width:1800px){.about-page .about-story__copy,.about-page .about-network__copy{max-width:760px}}
+
+/* Imágenes móviles sin caja de placeholder. */
+@media(max-width:620px){
+  .about-page .media-placeholder:has(>img),
+  .about-page .media-placeholder--portrait:has(>img),
+  .about-page .media-placeholder--wide:has(>img),
+  .about-page .media-placeholder--landscape:has(>img),
+  .about-page .media-placeholder--small:has(>img){
+    width:100%;
+    min-height:0;
+    height:auto;
+    aspect-ratio:auto;
+    display:block;
+    overflow:visible;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+  }
+  .about-page .media-placeholder:has(>img)::before,
+  .about-page .media-placeholder:has(>img)::after{
+    display:none;
+  }
+  .about-page .media-placeholder:has(>img)>img,
+  .about-page .media-placeholder--portrait:has(>img)>img,
+  .about-page .media-placeholder--wide:has(>img)>img,
+  .about-page .media-placeholder--landscape:has(>img)>img,
+  .about-page .media-placeholder--small:has(>img)>img{
+    position:static;
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:none;
+    object-fit:contain;
+    border-radius:var(--radius-lg);
+    box-shadow:none;
+  }
+}

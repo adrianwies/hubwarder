@@ -148,3 +148,10 @@
   .ocean-continuum .logistics-road.is-road-intro-complete .logistics-road__intro{position:absolute;top:clamp(24px,4vh,42px);right:12px;left:auto;width:52vw;max-width:310px;padding:0 0 0 12px;transform:none!important}
   .ocean-continuum :is(.logistics-road__intro,.road-story,.ocean-voyage__lead,.ocean-voyage__chapters article){text-shadow:none}
 }
+/* Los puntos de progreso son exclusivos de móvil. */
+@media(min-width:769px){
+  .logistics-road__steps,
+  .logistics-road.is-road-active .logistics-road__steps{
+    display:none;
+  }
+}

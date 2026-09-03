@@ -415,3 +415,17 @@ body{background:#f6f7fa;color:#172033}.inner-page{min-height:100vh;padding-top:8
     margin-top:var(--space-6);
   }
 }
+
+/* Portadas móviles de Nosotros y Servicios con la medida de Contacto. */
+@media(max-width:620px){
+  .about-page .about-hero,
+  .services-page .services-hero{
+    min-height:0;
+    padding-top:108px;
+    padding-bottom:var(--space-10);
+  }
+  .about-page .about-hero h1,
+  .services-page .services-hero__copy h1{
+    font-size:clamp(2.45rem,11vw,3.35rem)!important;
+  }
+}

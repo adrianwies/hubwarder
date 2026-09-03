@@ -120,3 +120,58 @@
   .platform-page .platform-human aside{position:relative;right:auto;bottom:auto;margin:14px}
 }
 @media (max-height:700px) and (min-width:701px){.platform-page .platform-hero{min-height:auto;padding-bottom:58px}}
+
+/* Plataforma móvil: portada y paneles sin dimensiones de escritorio. */
+@media(max-width:700px){
+  .platform-page .platform-hero{min-height:0;padding:108px 0 var(--space-10)}
+  .platform-page .platform-hero__copy{width:100%;text-align:left}
+  .platform-page .platform-hero__copy h1{font-size:clamp(2.45rem,11vw,3.35rem)!important;line-height:1}
+  .platform-page .platform-hero__copy>p:not(.eyebrow){margin-inline:0;font-size:.94rem;line-height:1.55}
+  .platform-page .platform-hero__actions{gap:10px;margin-top:24px}
+  .platform-page .platform-hero__actions a,.platform-page .platform-hero__actions button{padding:13px 16px;min-height:44px}
+  .platform-page .dashboard-stage{width:100%;margin-top:36px;perspective:none}
+  .platform-page .dashboard-window{width:100%;overflow:hidden;border-radius:14px;transform:none}
+  .platform-page .dash-bar{height:34px;padding-inline:10px;font-size:.42rem}
+  .platform-page .dash-body{width:100%;height:auto;min-height:390px}
+  .platform-page .dash-body aside{width:42px;gap:20px;padding-block:12px}
+  .platform-page .dash-logo{width:26px;height:26px;border-radius:7px;font-size:.72rem}
+  .platform-page .dash-body aside i{width:13px;height:13px}
+  .platform-page .dash-main{min-width:0;padding:17px 12px}
+  .platform-page .dash-main h3{font-size:1rem}
+  .platform-page .dash-user{width:28px;height:28px}
+  .platform-page .dash-kpis{gap:7px;margin-top:15px}
+  .platform-page .dash-kpis article{min-width:0;padding:10px 8px}
+  .platform-page .dash-kpis small{font-size:.39rem;letter-spacing:.05em}
+  .platform-page .dash-kpis strong{margin-top:6px;font-size:1.18rem}
+  .platform-page .dash-kpis span{font-size:.42rem}
+  .platform-page .dash-map{height:180px;margin-top:9px}
+  .platform-page .map-world{inset:20px 12px;font-size:1rem}
+  .platform-page .map-world span{margin:0 14px;font-size:.38rem}
+  .platform-page .dash-map svg{inset:30px 3%;width:94%;height:95px}
+  .platform-page .map-status{right:8px;bottom:8px;left:8px;padding:8px}
+  .platform-page .dash-table{margin-top:9px;overflow:hidden}
+  .platform-page .dash-table>div{grid-template-columns:1.4fr 1fr 1fr;padding:7px 8px;font-size:.43rem}
+  .platform-page .dash-table>div>*:nth-child(4){display:none}
+  .platform-page .floating-alert,.platform-page .floating-sync{display:none}
+  .platform-page .platform-demo{padding:var(--space-16) 0}
+  .platform-page .demo-heading{gap:16px}
+  .platform-page .feature-experience{gap:22px;margin-top:38px}
+  .platform-page .feature-screen{height:auto;min-height:430px;border-radius:16px}
+  .platform-page .feature-screen:has(.feature-panel[data-panel="tracking"].active){min-height:440px}
+  .platform-page .feature-screen:has(.feature-panel[data-panel="documents"].active){min-height:500px}
+  .platform-page .feature-screen:has(.feature-panel[data-panel="alerts"].active){min-height:390px}
+  .platform-page .feature-screen:has(.feature-panel[data-panel="assistant"].active){min-height:455px}
+  .platform-page .feature-panel{padding:24px 14px}
+  .platform-page .alert-focus{margin-top:30px;padding:22px 18px}
+  .platform-page .alert-focus h3{font-size:clamp(1.25rem,5.5vw,1.55rem)}
+  .platform-page .tracking-route{margin-top:38px}
+  .platform-page .tracking-detail{margin-top:48px;padding:18px}
+  .platform-page .document-stack{gap:9px;margin-top:22px}
+  .platform-page .chat{margin-top:34px}
+  .platform-page .chat-input{margin-top:42px}
+}
+@media(max-width:390px){
+  .platform-page .dash-kpis{grid-template-columns:repeat(2,1fr)}
+  .platform-page .dash-kpis article:last-child{display:none}
+  .platform-page .feature-screen:has(.feature-panel[data-panel="documents"].active){min-height:480px}
+}

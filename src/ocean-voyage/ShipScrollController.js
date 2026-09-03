@@ -17,8 +17,9 @@ export class ShipScrollController{
       const setRoadActive=active=>road.classList.toggle('is-road-active',active);
       this.roadTrigger=ScrollTrigger.create({
         trigger:road,
-        start:'top top',
+        start:()=>this.mobile?'top 92%':'top top',
         end:'bottom bottom',
+        invalidateOnRefresh:true,
         onEnter:()=>setRoadActive(true),
         onEnterBack:()=>setRoadActive(true),
         onLeave:()=>setRoadActive(false),

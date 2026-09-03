@@ -135,6 +135,45 @@ dateInput.addEventListener(
     if (!dateInput.value) return
 
 
+    // Comprobar si es sábado o domingo
+    const selectedDate = new Date(
+      `${dateInput.value}T12:00:00`,
+    )
+
+
+    const day = selectedDate.getDay()
+
+
+    // 0 = domingo
+    // 6 = sábado
+    if (day === 0 || day === 6) {
+      dateInput.value = ''
+
+
+      timeSelect.disabled = true
+
+
+      timeSelect.innerHTML = `
+        <option value="">
+          No atendemos sábados ni domingos
+        </option>
+      `
+
+
+      message.textContent =
+        'Las reuniones están disponibles únicamente de lunes a viernes.'
+
+
+      message.hidden = false
+
+
+      return
+    }
+
+
+    message.hidden = true
+
+
     timeSelect.disabled = true
 
 
@@ -157,7 +196,7 @@ dateInput.addEventListener(
       if (!response.ok) {
         throw new Error(
           data.message ||
-            'No se pudo consultar la disponibilidad.',
+            'No se pudo consultar disponibilidad.',
         )
       }
 
@@ -177,6 +216,11 @@ dateInput.addEventListener(
     }
   },
 )
+
+
+
+
+
 form.addEventListener(
   'submit',
   async (event) => {

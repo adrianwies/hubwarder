@@ -18,7 +18,7 @@
 
 /* ocean-continuum-layout: un solo mar y un solo barco para ambas narrativas. */
 .ocean-continuum{position:relative;width:100%;max-width:none;overflow-x:clip;isolation:isolate;background:#0d3b52}
-.ocean-continuum__sticky{position:sticky;z-index:0;top:0;right:0;left:0;width:100vw;min-width:100%;max-width:none;height:100vh;height:100svh;margin-bottom:-100vh;overflow:hidden;background:#0d3b52}
+.ocean-continuum__sticky{position:sticky;z-index:0;top:0;right:0;left:0;width:100vw;min-width:100%;max-width:none;height:100vh;margin-bottom:-100vh;overflow:hidden;background:#071f2d}
 .ocean-continuum__canvas{position:absolute;inset:0;width:100%!important;min-width:100%;height:100%!important;max-width:none}
 .ocean-continuum__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(2,10,17,.58),transparent 32%,transparent 68%,rgba(2,10,17,.42))}
 .ocean-continuum .logistics-road,.ocean-continuum .ocean-voyage{position:relative;z-index:1;background:transparent}
@@ -47,10 +47,17 @@
 @supports(width:100dvw){
   .ocean-continuum__sticky{width:100dvw}
 }
+@supports(height:100dvh){
+  .ocean-continuum__sticky{height:100dvh;margin-bottom:-100dvh}
+}
 
 /* Narrativa móvil: introducción y tarjetas nunca comparten el mismo plano. */
 @media(max-width:768px){
   .ocean-continuum .logistics-road__intro{
+    position:fixed;
+    z-index:12;
+    top:calc(var(--header-height) + 18px);
+    bottom:auto;
     right:20px;
     left:20px;
     width:auto;
